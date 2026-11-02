@@ -1,0 +1,42 @@
+{
+  "meta": {
+    "title": "Get in Touch — UnLitigate",
+    "description": "Tell us what's happening. Two minutes. Plain words. You choose what to share. Please don't share ID or bank details."
+  },
+  "hero": {
+    "eyebrow": "Get in Touch",
+    "heading": "Tell us what's happening",
+    "body": "Two minutes. Plain words. You choose what to share."
+  },
+  "steps": {
+    "heading": "What happens next",
+    "items": [
+      {
+        "number": "1",
+        "heading": "You fill a short form",
+        "body": "Name, city, the kind of dispute, and a few lines on what's going on."
+      },
+      {
+        "number": "2",
+        "heading": "We read it and reply",
+        "body": "A person reads what you sent. We do not ask for ID or bank details."
+      },
+      {
+        "number": "3",
+        "heading": "We explain your options",
+        "body": "Including whether mediation may suit you — and when it may not."
+      }
+    ]
+  },
+  "form": {
+    "note": "Please don't share ID or bank details.",
+    "button": {
+      "label": "Open the form →",
+      "href": "form"
+    }
+  },
+  "other": {
+    "heading": "Other ways",
+    "body": "If a form is not right for you, write or send a message."
+  }
+}

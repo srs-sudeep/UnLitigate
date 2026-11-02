@@ -1,0 +1,121 @@
+import about from "../data/about.json";
+import site from "../data/site.json";
+import { SflLockup } from "../components/illustrations/SflLockup";
+import { Seo } from "../components/layout/Seo";
+import { CtaBand } from "../components/ui/CtaBand";
+import { PageHero } from "../components/ui/PageHero";
+import { Section } from "../components/ui/Section";
+
+export function About() {
+  return (
+    <>
+      <Seo title={about.meta.title} description={about.meta.description} />
+      <Section>
+        <PageHero
+          eyebrow={about.hero.eyebrow}
+          heading={about.hero.heading}
+          body={about.hero.body}
+        />
+      </Section>
+
+      <Section className="pb-8">
+        <div className="space-y-16">
+          {about.stories.items.map((story, index) => (
+            <article
+              key={story.id}
+              className={`grid items-center gap-8 md:grid-cols-2 ${
+                index % 2 === 1 ? "md:[&>img]:md:order-last" : ""
+              }`}
+            >
+              <img
+                src={story.image.src}
+                alt={story.image.alt}
+                className="h-72 w-full rounded-3xl object-cover md:h-80"
+              />
+              <div>
+                <p className="text-xs font-semibold uppercase tracking-[0.18em] text-teal">
+                  {story.role}
+                </p>
+                <h2 className="mt-2 font-serif text-3xl">{story.heading}</h2>
+                <p className="mt-4 leading-relaxed text-ink/75">{story.body}</p>
+                <p className="mt-4 text-sm font-semibold text-ink">
+                  {story.name}
+                </p>
+              </div>
+            </article>
+          ))}
+        </div>
+      </Section>
+
+      <Section tone="teal" className="my-12 py-10">
+        <div className="flex justify-center" aria-hidden="true">
+          <svg viewBox="0 0 220 24" className="h-8 w-56">
+            <line
+              x1="10"
+              y1="12"
+              x2="210"
+              y2="12"
+              stroke="#F7F2EA"
+              strokeWidth="1.6"
+            />
+            <circle cx="10" cy="12" r="5" fill="#F7F2EA" />
+            <circle cx="80" cy="12" r="4.5" fill="#C9683F" />
+            <circle cx="140" cy="12" r="4.5" fill="#C9683F" />
+            <circle cx="210" cy="12" r="5" fill="#F7F2EA" />
+          </svg>
+        </div>
+      </Section>
+
+      <Section className="py-12">
+        <h2 className="font-serif text-3xl sm:text-4xl">{about.values.heading}</h2>
+        <div className="mt-8 grid gap-4 md:grid-cols-3">
+          {about.values.items.map((value) => (
+            <article
+              key={value.heading}
+              className="rounded-3xl border border-ink/8 bg-mist/40 p-6"
+            >
+              <h3 className="font-serif text-2xl text-clay">{value.heading}</h3>
+              <p className="mt-3 text-ink/75">{value.body}</p>
+            </article>
+          ))}
+        </div>
+      </Section>
+
+      <Section className="py-12">
+        <h2 className="font-serif text-3xl sm:text-4xl">{about.team.heading}</h2>
+        <div className="mt-8 grid gap-5 md:grid-cols-3">
+          {about.team.items.map((person) => (
+            <article
+              key={person.id}
+              className="overflow-hidden rounded-3xl border border-ink/8"
+            >
+              <img
+                src={person.image.src}
+                alt={person.image.alt}
+                className="h-64 w-full object-cover object-top"
+              />
+              <div className="p-5">
+                <h3 className="font-serif text-2xl">{person.name}</h3>
+                <p className="mt-1 text-sm text-ink/65">{person.role}</p>
+              </div>
+            </article>
+          ))}
+        </div>
+      </Section>
+
+      <Section className="py-12">
+        <h2 className="font-serif text-3xl">{about.supporters.heading}</h2>
+        <p className="mt-3 max-w-2xl text-ink/75">{about.supporters.body}</p>
+        <div className="mt-5">
+          <SflLockup label={site.sfl.label} href={about.supporters.sfl.href} />
+        </div>
+      </Section>
+
+      <CtaBand
+        heading={about.cta.heading}
+        body={about.cta.body}
+        button={about.cta.button}
+      />
+    </>
+  );
+}

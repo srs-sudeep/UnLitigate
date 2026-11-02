@@ -1,0 +1,77 @@
+{
+  "name": "UnLitigate",
+  "tagline": "Mediation first",
+  "sfl": {
+    "label": "An SFL Impact Project",
+    "href": "https://studentsforliberty.org/"
+  },
+  "logo": {
+    "nav": {
+      "src": "/assets/logos/horizontal-teal-clay.png",
+      "alt": "UnLitigate"
+    },
+    "inverted": {
+      "src": "/assets/logos/horizontal-cream.png",
+      "alt": "UnLitigate"
+    },
+    "icon": {
+      "src": "/assets/logos/icon-teal-clay.png",
+      "alt": "UnLitigate seal"
+    },
+    "favicon": {
+      "src": "/assets/logos/app-icon-cream.png",
+      "alt": "UnLitigate"
+    }
+  },
+  "nav": {
+    "links": [
+      { "label": "Mediation Explained", "href": "/mediation-explained" },
+      { "label": "What UnLitigate Does", "href": "/what-we-do" },
+      { "label": "About Us", "href": "/about" }
+    ],
+    "language": {
+      "en": "EN",
+      "hi": "हिं",
+      "note": "Language switch comes later. Slot only."
+    },
+    "cta": {
+      "label": "Get in Touch",
+      "href": "/get-in-touch"
+    }
+  },
+  "form": {
+    "url": "https://forms.gle/REPLACE_WITH_REAL_FORM",
+    "newTab": true,
+    "privacyNote": "Please don't share ID or bank details."
+  },
+  "social": {
+    "email": {
+      "label": "hello@unlitigate.org",
+      "href": "mailto:hello@unlitigate.org"
+    },
+    "instagram": {
+      "label": "Instagram",
+      "href": "https://www.instagram.com/unlitigate/"
+    },
+    "linkedin": {
+      "label": "LinkedIn",
+      "href": "https://www.linkedin.com/company/unlitigate/"
+    }
+  },
+  "footer": {
+    "disclaimer": "UnLitigate shares general information about mediation. It is not legal advice. We use simple analytics to understand how visitors find this site."
+  },
+  "stickyCta": {
+    "label": "Get in Touch",
+    "href": "/get-in-touch"
+  },
+  "meta": {
+    "siteName": "UnLitigate",
+    "defaultTitle": "UnLitigate — Unlitigate your disputes",
+    "defaultDescription": "Court is not the only way. UnLitigate is a student-led initiative that helps people in India explore mediation first — a guided conversation where both sides choose the outcome.",
+    "ogImage": {
+      "src": "/assets/og/share.png",
+      "alt": "Unlitigate your disputes."
+    }
+  }
+}

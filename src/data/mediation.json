@@ -1,0 +1,127 @@
+{
+  "meta": {
+    "title": "Mediation Explained — UnLitigate",
+    "description": "Mediation, in plain words. A guided conversation where both sides work toward an agreement they choose. It suits some disputes, not all."
+  },
+  "hero": {
+    "eyebrow": "Mediation Explained",
+    "heading": "Mediation, in plain words",
+    "body": "A guided conversation where both sides work toward an agreement they choose. It suits some disputes, not all."
+  },
+  "paths": {
+    "heading": "Court and mediation, side by side",
+    "courtLabel": "Court",
+    "mediationLabel": "Mediation",
+    "rows": [
+      {
+        "label": "Time",
+        "court": "Can take a long time, depending on the court and the case.",
+        "mediation": "Often shorter, but it depends on both sides."
+      },
+      {
+        "label": "Cost",
+        "court": "Court and lawyer costs can add up over time.",
+        "mediation": "Usually lower, and costs are often shared."
+      },
+      {
+        "label": "Control",
+        "court": "A judge decides the outcome.",
+        "mediation": "You and the other side decide together."
+      },
+      {
+        "label": "Privacy",
+        "court": "Hearings are usually public.",
+        "mediation": "Conversations are kept confidential."
+      }
+    ]
+  },
+  "situations": {
+    "heading": "Where are you?",
+    "subheading": "Each path is a short read. None of this is legal advice, and none of it promises an outcome.",
+    "items": [
+      {
+        "id": "thinking-of-filing",
+        "heading": "Thinking of filing",
+        "body": "You may be gathering papers, asking around, or sitting with the feeling that court is the only next step. Before you file, it can help to know that mediation is another way to start: a conversation, with a trained person in the room, where you keep a say in how it ends. It will not suit every dispute. If the other side will not take part, or if the matter involves violence, fraud or a crime, court may still be the right door. If you want to understand your options first, tell us what's happening in plain words."
+      },
+      {
+        "id": "notice-received",
+        "heading": "Notice received",
+        "body": "A notice can make everything feel urgent. You still have a moment to look at what the notice is asking, and whether a conversation could sit alongside a formal reply. Mediation does not replace legal advice, and it does not ask you to ignore a deadline. It is a way to see whether both sides can still choose an agreement, instead of leaving the outcome to a judge. If you are unsure, send a short note. We will help you see whether mediation may suit you."
+      },
+      {
+        "id": "already-in-court",
+        "heading": "Already in court",
+        "body": "Being in court does not always mean talking has to stop. In many civil disputes, people still sit down together — sometimes because a judge suggests it, sometimes because both sides are tired of waiting. Mediation can run alongside a case. It is voluntary. If it does not work, the case can continue. If it does, you may be able to put the agreement in writing and step out of the fight on terms you chose."
+      },
+      {
+        "id": "stuck-for-years",
+        "heading": "Stuck for years",
+        "body": "Long cases drain money, time and the will to keep going. Some people drop the dispute not because they were wrong, but because they cannot keep showing up. Mediation will not rewind those years. It can still be a different way forward: a guided conversation, on your terms, if the other side will come. There is no guarantee. There is a chance to take back some control over how this ends."
+      }
+    ]
+  },
+  "steps": {
+    "heading": "How it works",
+    "subheading": "Four steps. A conversation, not a courtroom.",
+    "items": [
+      {
+        "number": "1",
+        "heading": "You share your side",
+        "body": "You tell us, in plain words, what happened and what you hope for."
+      },
+      {
+        "number": "2",
+        "heading": "The other side is invited",
+        "body": "Mediation only moves if they agree to take part. No one is forced into the room."
+      },
+      {
+        "number": "3",
+        "heading": "A mediator guides the talk",
+        "body": "A trained person keeps the conversation steady. They do not decide the outcome."
+      },
+      {
+        "number": "4",
+        "heading": "You agree, in writing",
+        "body": "If you reach terms, they are written down and signed by both sides."
+      }
+    ]
+  },
+  "unsuitable": {
+    "heading": "When mediation may not suit",
+    "body": "If the other side will not take part, or where there is violence, fraud or a criminal matter, mediation is usually not the right first step. Court, or another formal process, may be."
+  },
+  "faq": {
+    "heading": "Questions people ask",
+    "items": [
+      {
+        "question": "Is an agreement legally binding?",
+        "answer": "A written settlement signed by both sides can be binding. The exact effect depends on how it is recorded. We will explain this in plain words if you get in touch — this site is not legal advice."
+      },
+      {
+        "question": "What if the other side refuses?",
+        "answer": "Then mediation does not go ahead. It is voluntary. Refusing does not decide who is right. It just means this path is closed for now."
+      },
+      {
+        "question": "Who is the mediator?",
+        "answer": "In our pilot, trained students work under accredited supervision. They guide the conversation. They do not take sides, and they do not impose an outcome."
+      },
+      {
+        "question": "Is it confidential?",
+        "answer": "Yes, with the usual limits of the law. What is said in mediation is not meant to be used as a public fight. We will be clear about confidentiality before anything starts."
+      },
+      {
+        "question": "What does it cost?",
+        "answer": "Costs are usually lower than a long court case, and they are often shared. We will be honest about any cost before you commit. UnLitigate itself is a non-commercial student initiative."
+      }
+    ]
+  },
+  "cta": {
+    "heading": "Ready to explore your options?",
+    "body": "Two minutes. Plain words. You choose what to share.",
+    "button": {
+      "label": "Explore your options",
+      "href": "form"
+    }
+  }
+}

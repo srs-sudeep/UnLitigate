@@ -1,0 +1,77 @@
+{
+  "meta": {
+    "title": "What UnLitigate Does — UnLitigate",
+    "description": "Three parts, one aim: make mediation something people think of first. Awareness is live. A supervised student-mediator pilot is starting in Bhubaneswar and Pune."
+  },
+  "hero": {
+    "eyebrow": "What UnLitigate Does",
+    "heading": "Three parts, one aim",
+    "body": "Make mediation something people think of first. Here is what is live and what is coming."
+  },
+  "parts": {
+    "items": [
+      {
+        "status": "Live now",
+        "heading": "Awareness and enquiries",
+        "body": "Reels, posts, this site. We explain mediation in plain language and take enquiries from people who want to understand their options."
+      },
+      {
+        "status": "Pilot starting",
+        "heading": "Supervised student mediators",
+        "body": "Training and supervision for students who will facilitate suitable disputes in Bhubaneswar and Pune."
+      },
+      {
+        "status": "Being built",
+        "heading": "Referral partnerships",
+        "body": "Working toward links with university mediation centres, so people can be referred to a trusted room."
+      }
+    ]
+  },
+  "map": {
+    "heading": "Where we are",
+    "body": "This is where we are. Soft marks elsewhere stand for people who may be about to give up on a dispute — not real cases, and not a count.",
+    "caption": "Illustrative. Not data about real people or places.",
+    "pins": [
+      { "id": "bhubaneswar", "label": "Bhubaneswar", "x": 62, "y": 52 },
+      { "id": "pune", "label": "Pune", "x": 38, "y": 58 }
+    ]
+  },
+  "safeguards": {
+    "heading": "Safeguards",
+    "subheading": "For centres, universities and lawyers — and for anyone who needs to know how we work.",
+    "items": [
+      {
+        "heading": "Supervision",
+        "body": "Student mediators work under a registered mediator / legal aid clinic. The named supervisor will be listed here once confirmed."
+      },
+      {
+        "heading": "We take",
+        "body": "Suitable business, family and property disputes — where both sides can sit down, and where talking can still help."
+      },
+      {
+        "heading": "We don't take",
+        "body": "Violence, fraud, or criminal matters. Those need a different door."
+      },
+      {
+        "heading": "Settlements",
+        "body": "When people agree, it is written down and signed by both sides."
+      },
+      {
+        "heading": "Confidentiality and consent",
+        "body": "No one is forced into the room. What is said is treated as confidential, with the usual limits of the law."
+      }
+    ]
+  },
+  "whyNow": {
+    "heading": "Why now",
+    "body": "India's Mediation Act 2023 put mediation on a clearer legal footing. The Mediation Council of India was set up in August 2026. We want to work alongside that shift — helping ordinary people hear about the option, in language that does not feel like a courtroom."
+  },
+  "cta": {
+    "heading": "Ready to explore your options?",
+    "body": "Tell us what's happening. We will help you see whether mediation may suit you.",
+    "button": {
+      "label": "Explore your options",
+      "href": "form"
+    }
+  }
+}
