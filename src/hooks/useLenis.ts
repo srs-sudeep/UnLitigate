@@ -21,6 +21,7 @@ export function useLenis(enabled: boolean) {
     });
 
     setLenis(lenis);
+    window.__lenis = lenis;
     lenis.on("scroll", ScrollTrigger.update);
 
     const ticker = (time: number) => {
@@ -37,6 +38,7 @@ export function useLenis(enabled: boolean) {
       window.removeEventListener("resize", onResize);
       gsap.ticker.remove(ticker);
       setLenis(null);
+      if (window.__lenis === lenis) delete window.__lenis;
       lenis.destroy();
     };
   }, [enabled]);

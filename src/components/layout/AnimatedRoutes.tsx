@@ -29,7 +29,6 @@ export function AnimatedRoutes() {
   const [label, setLabel] = useState(pageLabel(location.pathname));
   const [phase, setPhase] = useState<"off" | "closed" | "open">("off");
   const displayedRef = useRef(displayed);
-  const firstRef = useRef(true);
   displayedRef.current = displayed;
 
   useEffect(() => {
@@ -39,8 +38,7 @@ export function AnimatedRoutes() {
       return;
     }
 
-    if (reduced || firstRef.current) {
-      firstRef.current = false;
+    if (reduced) {
       setDisplayed(location);
       setLabel(pageLabel(location.pathname));
       return;
