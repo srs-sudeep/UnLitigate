@@ -15,9 +15,9 @@ export function useLenis(enabled: boolean) {
     }
 
     const lenis = new Lenis({
-      duration: 1.15,
+      duration: 0.82,
       smoothWheel: true,
-      wheelMultiplier: 0.9,
+      wheelMultiplier: 1.2,
     });
 
     setLenis(lenis);

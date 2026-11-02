@@ -14,7 +14,7 @@ export function StatusCard({ status, heading, body }: StatusCardProps) {
   const pill = statusStyles[status] ?? "bg-mist text-ink";
 
   return (
-    <article className="rounded-3xl border border-ink/8 bg-white/50 p-6 sm:p-7">
+    <article className="lift rounded-3xl border border-ink/10 bg-mist/30 p-6 sm:p-7">
       <span
         className={`inline-flex rounded-full px-3 py-1 text-xs font-semibold tracking-wide ${pill}`}
       >

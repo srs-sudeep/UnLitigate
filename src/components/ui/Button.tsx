@@ -5,7 +5,8 @@ import { isExternalHref, resolveHref } from "../../lib/links";
 type Variant = "solid" | "outline" | "solidOnTeal" | "outlineOnTeal";
 
 type ButtonProps = {
-  href: string;
+  href?: string;
+  onClick?: () => void;
   children: ReactNode;
   variant?: Variant;
   className?: string;
@@ -24,12 +25,22 @@ const variants: Record<Variant, string> = {
 
 export function Button({
   href,
+  onClick,
   children,
   variant = "solid",
   className = "",
 }: ButtonProps) {
+  const classes = `inline-flex items-center justify-center rounded-full px-5 py-2.5 text-[15px] font-semibold tracking-wide transition-[color,background-color,transform,box-shadow] duration-200 hover:-translate-y-0.5 hover:shadow-md active:translate-y-0 ${variants[variant]} ${className}`;
+
+  if (!href) {
+    return (
+      <button type="button" className={classes} onClick={onClick}>
+        {children}
+      </button>
+    );
+  }
+
   const resolved = resolveHref(href);
-  const classes = `inline-flex items-center justify-center rounded-full px-5 py-2.5 text-[15px] font-semibold tracking-wide transition-colors duration-200 ${variants[variant]} ${className}`;
 
   if (isExternalHref(href)) {
     return (

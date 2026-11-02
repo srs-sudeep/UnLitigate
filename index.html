@@ -13,8 +13,83 @@
       rel="stylesheet"
     />
     <title>UnLitigate — Mediation first</title>
+    <style>
+      #preloader {
+        position: fixed;
+        inset: 0;
+        z-index: 200;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: #f7f2ea;
+        transition: opacity 0.55s ease, visibility 0.55s ease;
+      }
+      #preloader.is-done {
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+      }
+      .preloader-mark {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 1.25rem;
+      }
+      .preloader-thread {
+        width: 10rem;
+        height: 1rem;
+      }
+      .preloader-thread line {
+        stroke: #1f2a2e;
+        stroke-width: 1.4;
+        stroke-linecap: round;
+        opacity: 0.7;
+        stroke-dasharray: 144;
+        stroke-dashoffset: 144;
+        animation: preloader-draw 0.9s ease forwards 0.12s;
+      }
+      .preloader-thread .end {
+        fill: #f7f2ea;
+        stroke: #1f2a2e;
+        stroke-width: 1.2;
+      }
+      .preloader-thread .bead {
+        fill: #c9683f;
+        opacity: 0;
+        animation: preloader-pop 0.35s ease forwards;
+      }
+      .preloader-thread .bead.b1 { animation-delay: 0.42s; }
+      .preloader-thread .bead.b2 { animation-delay: 0.58s; }
+      @keyframes preloader-draw {
+        to { stroke-dashoffset: 0; }
+      }
+      @keyframes preloader-pop {
+        from { opacity: 0; transform: scale(0.4); }
+        to { opacity: 1; transform: scale(1); }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        .preloader-thread line,
+        .preloader-thread .bead {
+          animation: none;
+          opacity: 1;
+          stroke-dashoffset: 0;
+        }
+      }
+    </style>
   </head>
   <body>
+    <div id="preloader" role="status" aria-label="Loading UnLitigate">
+      <div class="preloader-mark">
+        <img src="/assets/logos/icon-teal-clay.png" alt="" width="64" height="64" />
+        <svg class="preloader-thread" viewBox="0 0 160 16" aria-hidden="true">
+          <line x1="8" y1="8" x2="152" y2="8" />
+          <circle class="end" cx="8" cy="8" r="3.5" />
+          <circle class="bead b1" cx="56" cy="8" r="3" />
+          <circle class="bead b2" cx="104" cy="8" r="3" />
+          <circle class="end" cx="152" cy="8" r="3.5" />
+        </svg>
+      </div>
+    </div>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
   </body>

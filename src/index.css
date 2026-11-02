@@ -51,4 +51,136 @@ button:focus-visible {
   html {
     scroll-behavior: auto;
   }
+
+  #preloader,
+  #preloader * {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+
+html:has(#preloader:not(.is-done)) {
+  overflow: hidden;
+}
+
+@media (hover: hover) and (prefers-reduced-motion: no-preference) {
+  .lift {
+    transition:
+      transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+      box-shadow 0.35s ease,
+      border-color 0.35s ease;
+  }
+
+  .lift:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 14px 32px rgba(31, 42, 46, 0.1);
+  }
+
+  .zoom-img {
+    transition: transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .group:hover .zoom-img {
+    transform: scale(1.06);
+  }
+
+  .door-card {
+    transition:
+      transform 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+      box-shadow 0.4s ease;
+  }
+
+  .door-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 16px 36px rgba(31, 42, 46, 0.12);
+  }
+
+  .door-card svg {
+    transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .door-card:hover svg {
+    transform: translateY(-5px);
+  }
+
+  .door-mediation:hover .mediation-glow {
+    opacity: 1;
+  }
+
+  .nav-link::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -2px;
+    height: 1px;
+    background: #1e5f5c;
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .nav-link:hover::after {
+    transform: scaleX(1);
+  }
+
+  .nav-link.is-active::after {
+    transform: scaleX(1);
+    background: #c9683f;
+  }
+
+  .map-pin {
+    cursor: pointer;
+  }
+
+  .map-pin .pin-core,
+  .map-pin .pin-ring,
+  .map-pin .pin-halo {
+    transform-box: fill-box;
+    transform-origin: center;
+    transition:
+      transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+      opacity 0.35s ease;
+  }
+
+  .map-pin:hover .pin-core {
+    transform: scale(1.22);
+  }
+
+  .map-pin:hover .pin-ring {
+    transform: scale(1.45);
+  }
+
+  .map-pin:hover .pin-halo {
+    opacity: 0.18;
+    transform: scale(1.15);
+  }
+
+  .map-pin:hover .pin-label {
+    fill: #1e5f5c;
+    font-weight: 600;
+  }
+}
+
+@keyframes pin-pulse {
+  0% {
+    transform: scale(1);
+    opacity: 0.7;
+  }
+  70% {
+    transform: scale(1.55);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1.55);
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .pin-ring {
+    transform-box: fill-box;
+    transform-origin: center;
+    animation: pin-pulse 2.6s ease-out infinite;
+  }
 }

@@ -32,8 +32,8 @@
     "body": "This is where we are. Soft marks elsewhere stand for people who may be about to give up on a dispute — not real cases, and not a count.",
     "caption": "Illustrative. Not data about real people or places.",
     "pins": [
-      { "id": "bhubaneswar", "label": "Bhubaneswar", "x": 62, "y": 52 },
-      { "id": "pune", "label": "Pune", "x": 38, "y": 58 }
+      { "id": "pune", "label": "Pune", "lat": 18.52, "lon": 73.86 },
+      { "id": "bhubaneswar", "label": "Bhubaneswar", "lat": 20.3, "lon": 85.83 }
     ]
   },
   "safeguards": {

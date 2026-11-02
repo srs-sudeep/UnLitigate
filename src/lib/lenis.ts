@@ -17,7 +17,7 @@ export function scrollToTarget(
   const offset = options?.offset ?? 0;
   const immediate = options?.immediate ?? false;
   if (instance) {
-    instance.scrollTo(target, { offset, immediate, duration: 1.05 });
+    instance.scrollTo(target, { offset, immediate, duration: 0.72 });
     return;
   }
   if (typeof target === "number") {

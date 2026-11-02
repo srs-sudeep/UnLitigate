@@ -10,6 +10,8 @@ import { Button } from "../components/ui/Button";
 import { CtaBand } from "../components/ui/CtaBand";
 import { PathsTable } from "../components/ui/PathsTable";
 import { Section } from "../components/ui/Section";
+import { SectionHeader } from "../components/ui/SectionHeader";
+import { SituationIcon } from "../components/ui/SituationIcon";
 import { StatusCard } from "../components/ui/StatusCard";
 import { usePrefersReducedMotion } from "../hooks/usePrefersReducedMotion";
 
@@ -21,7 +23,7 @@ export function Home() {
       <Seo title={home.meta.title} description={home.meta.description} />
 
       <Section className="pt-10 pb-16 sm:pt-16 sm:pb-24">
-        <div className="grid items-center gap-12 lg:grid-cols-[1.05fr_0.95fr]">
+        <div className="grid items-center gap-12 lg:grid-cols-[1.05fr_0.95fr] lg:gap-16">
           <div>
             <p className="inline-flex rounded-full border border-teal/25 bg-mist/50 px-3 py-1 text-xs font-semibold uppercase tracking-[0.16em] text-teal">
               {home.hero.eyebrow}
@@ -53,12 +55,13 @@ export function Home() {
         </div>
       </Section>
 
-      <Section tone="mist" className="py-16 sm:py-20">
-        <h2 className="font-serif text-3xl sm:text-4xl">{home.situations.heading}</h2>
-        <p className="mt-3 max-w-2xl text-lg text-ink/70">
-          {home.situations.subheading}
-        </p>
-        <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+      <Section tone="mist" className="py-16 sm:py-24">
+        <SectionHeader
+          kicker="Start here"
+          heading={home.situations.heading}
+          subheading={home.situations.subheading}
+        />
+        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {home.situations.items.map((item, i) => (
             <motion.div
               key={item.id}
@@ -69,9 +72,10 @@ export function Home() {
             >
               <Link
                 to={item.href}
-                className="block h-full rounded-3xl border border-ink/8 bg-cream p-5 transition-transform duration-200 hover:-translate-y-0.5"
+                className="lift group block h-full rounded-3xl border border-ink/8 bg-cream p-5"
               >
-                <h3 className="font-serif text-xl text-ink">{item.heading}</h3>
+                <SituationIcon id={item.id} />
+                <h3 className="mt-4 font-serif text-xl text-ink">{item.heading}</h3>
                 <p className="mt-2 text-sm leading-relaxed text-ink/70">
                   {item.body}
                 </p>
@@ -81,9 +85,9 @@ export function Home() {
         </div>
       </Section>
 
-      <Section className="py-16 sm:py-20">
+      <Section className="py-16 sm:py-24">
+        <SectionHeader kicker="Court or conversation" heading={home.paths.heading} />
         <PathsTable
-          heading={home.paths.heading}
           courtLabel={home.paths.courtLabel}
           mediationLabel={home.paths.mediationLabel}
           rows={home.paths.rows}
@@ -91,21 +95,22 @@ export function Home() {
         />
       </Section>
 
-      <Section className="py-16 sm:py-20">
-        <h2 className="font-serif text-3xl sm:text-4xl">{home.stories.heading}</h2>
-        <p className="mt-3 max-w-2xl text-lg text-ink/70">
-          {home.stories.subheading}
-        </p>
-        <div className="mt-8 grid gap-5 md:grid-cols-3">
+      <Section tone="mist" className="py-16 sm:py-24">
+        <SectionHeader
+          kicker="The people"
+          heading={home.stories.heading}
+          subheading={home.stories.subheading}
+        />
+        <div className="grid gap-5 md:grid-cols-3">
           {home.stories.items.map((story) => (
             <article
               key={story.id}
-              className="overflow-hidden rounded-3xl border border-ink/8 bg-white/40"
+              className="lift group overflow-hidden rounded-3xl border border-ink/8 bg-cream"
             >
               <img
                 src={story.image.src}
                 alt={story.image.alt}
-                className="h-52 w-full object-cover"
+                className="zoom-img h-56 w-full object-cover"
               />
               <div className="p-6">
                 <p className="font-serif text-xl leading-snug text-ink">
@@ -123,7 +128,7 @@ export function Home() {
         </div>
       </Section>
 
-      <Section tone="teal" className="py-20 sm:py-24">
+      <Section tone="teal" className="py-20 sm:py-28">
         <BenchThread
           heading={home.bench.heading}
           body={home.bench.body}
@@ -132,9 +137,9 @@ export function Home() {
         />
       </Section>
 
-      <Section className="py-16 sm:py-20">
-        <h2 className="font-serif text-3xl sm:text-4xl">{home.work.heading}</h2>
-        <div className="mt-8 grid gap-4 md:grid-cols-3">
+      <Section className="py-16 sm:py-24">
+        <SectionHeader kicker="Today" heading={home.work.heading} />
+        <div className="grid gap-4 md:grid-cols-3">
           {home.work.items.map((item) => (
             <StatusCard
               key={item.heading}
@@ -151,13 +156,13 @@ export function Home() {
         </div>
       </Section>
 
-      <Section className="pb-8">
+      <Section tone="mist" className="py-12 sm:py-16">
         <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-5">
           {home.trust.items.map((item) => (
             <Link
               key={item.label}
               to={item.href}
-              className="rounded-2xl border border-ink/10 bg-cream px-4 py-5 text-center text-sm font-medium leading-snug text-ink/80 transition-colors hover:border-teal/40 hover:text-teal"
+              className="lift rounded-2xl border border-ink/10 bg-cream px-4 py-5 text-center text-sm font-medium leading-snug text-ink/80 hover:border-teal/40 hover:text-teal"
             >
               {item.label}
             </Link>
@@ -165,18 +170,18 @@ export function Home() {
         </div>
       </Section>
 
-      <Section className="py-16 sm:py-20">
-        <h2 className="font-serif text-3xl sm:text-4xl">{home.team.heading}</h2>
-        <div className="mt-8 grid gap-5 md:grid-cols-3">
+      <Section className="py-16 sm:py-24">
+        <SectionHeader kicker="The team" heading={home.team.heading} />
+        <div className="grid gap-5 md:grid-cols-3">
           {home.team.items.map((person) => (
             <article
               key={person.id}
-              className="overflow-hidden rounded-3xl border border-ink/8 bg-mist/30"
+              className="lift group overflow-hidden rounded-3xl border border-ink/8 bg-mist/40"
             >
               <img
                 src={person.image.src}
                 alt={person.image.alt}
-                className="h-64 w-full object-cover object-top"
+                className="zoom-img h-64 w-full object-cover object-top"
               />
               <div className="p-5">
                 <h3 className="font-serif text-2xl">{person.name}</h3>

@@ -14,7 +14,7 @@ export function FaqList({ items }: { items: FaqItem[] }) {
           <div key={item.question}>
             <button
               type="button"
-              className="flex w-full items-start justify-between gap-4 py-5 text-left"
+              className="flex w-full items-start justify-between gap-4 py-5 text-left transition-colors duration-200 hover:text-teal"
               onClick={() => setOpen(isOpen ? null : index)}
               aria-expanded={isOpen}
             >

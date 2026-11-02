@@ -19,7 +19,7 @@ export function Mediation() {
         />
       </Section>
 
-      <Section className="pb-16">
+      <Section className="pb-20">
         <PathsTable
           heading={mediation.paths.heading}
           courtLabel={mediation.paths.courtLabel}
@@ -40,7 +40,7 @@ export function Mediation() {
             <article
               key={item.id}
               id={item.id}
-              className="scroll-mt-28 rounded-3xl border border-ink/8 bg-cream p-6 sm:p-8"
+              className="lift scroll-mt-28 rounded-3xl border border-ink/8 bg-cream p-6 sm:p-8"
             >
               <h3 className="font-serif text-2xl text-ink">{item.heading}</h3>
               <p className="mt-4 max-w-3xl leading-relaxed text-ink/75">
@@ -61,7 +61,7 @@ export function Mediation() {
           {mediation.steps.items.map((step) => (
             <li
               key={step.number}
-              className="rounded-3xl border border-ink/8 bg-mist/30 p-6"
+              className="lift rounded-3xl border border-ink/8 bg-mist/30 p-6"
             >
               <span className="font-serif text-3xl text-clay">{step.number}</span>
               <h3 className="mt-2 font-serif text-2xl">{step.heading}</h3>

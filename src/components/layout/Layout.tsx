@@ -1,19 +1,22 @@
 import { useEffect } from "react";
 import { Outlet, useLocation } from "react-router-dom";
-import { motion } from "motion/react";
 import { useLenis } from "../../hooks/useLenis";
 import { usePrefersReducedMotion } from "../../hooks/usePrefersReducedMotion";
 import { scrollToTarget } from "../../lib/lenis";
+import { ErrorBoundary } from "./ErrorBoundary";
 import { Footer } from "./Footer";
 import { Nav } from "./Nav";
 import { StickyCta } from "./StickyCta";
+import { usePageTransition } from "./TransitionContext";
 
 export function Layout() {
   const reduced = usePrefersReducedMotion();
   const { pathname, hash } = useLocation();
+  const { transitioning } = usePageTransition();
   useLenis(!reduced);
 
   useEffect(() => {
+    if (transitioning) return;
     const timer = window.setTimeout(() => {
       if (hash) {
         const el = document.getElementById(hash.slice(1));
@@ -23,22 +26,18 @@ export function Layout() {
         }
       }
       scrollToTarget(0, { immediate: true });
-    }, 160);
+    }, 80);
     return () => window.clearTimeout(timer);
-  }, [pathname, hash, reduced]);
+  }, [pathname, hash, reduced, transitioning]);
 
   return (
     <div className="min-h-dvh bg-cream text-ink">
       <Nav />
-      <motion.main
-        key={pathname}
-        initial={reduced ? false : { opacity: 0, y: 12 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
-        className="pb-20 md:pb-0"
-      >
-        <Outlet />
-      </motion.main>
+      <main className="pb-28 md:pb-0">
+        <ErrorBoundary>
+          <Outlet />
+        </ErrorBoundary>
+      </main>
       <Footer />
       <StickyCta />
     </div>

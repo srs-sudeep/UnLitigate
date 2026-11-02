@@ -55,7 +55,7 @@ export function WhatWeDo() {
           {whatWeDo.safeguards.items.map((item) => (
             <article
               key={item.heading}
-              className="rounded-3xl border border-ink/8 bg-cream p-6"
+              className="lift rounded-3xl border border-ink/8 bg-cream p-6"
             >
               <h3 className="font-serif text-2xl">{item.heading}</h3>
               <p className="mt-3 leading-relaxed text-ink/75">{item.body}</p>

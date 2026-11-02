@@ -23,7 +23,7 @@ export function Contact() {
           {contact.steps.items.map((step) => (
             <li
               key={step.number}
-              className="rounded-3xl border border-ink/8 bg-mist/30 p-6"
+              className="lift rounded-3xl border border-ink/8 bg-mist/30 p-6"
             >
               <span className="font-serif text-3xl text-clay">{step.number}</span>
               <h3 className="mt-2 font-serif text-2xl">{step.heading}</h3>

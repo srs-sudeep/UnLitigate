@@ -1,0 +1,27 @@
+{
+  "notFound": {
+    "meta": {
+      "title": "Page not found — UnLitigate",
+      "description": "This page is not here. Go back home, or get in touch and tell us what you were looking for."
+    },
+    "code": "404",
+    "eyebrow": "This page is not here",
+    "heading": "The link may be old, or the page may have moved.",
+    "body": "Start from home, or tell us what you were looking for. We will help you find the next step.",
+    "primary": { "label": "Back home", "href": "/" },
+    "secondary": { "label": "Get in Touch", "href": "/get-in-touch" }
+  },
+  "serverError": {
+    "meta": {
+      "title": "Something went wrong — UnLitigate",
+      "description": "This page could not load. Try again, or go home and start from there."
+    },
+    "code": "500",
+    "eyebrow": "Something snagged",
+    "heading": "This page could not load.",
+    "body": "Something went wrong on our side. Try again in a moment, or go home and start from there.",
+    "primary": { "label": "Try again", "href": "retry" },
+    "secondary": { "label": "Back home", "href": "/" },
+    "tertiary": { "label": "Get in Touch", "href": "/get-in-touch" }
+  }
+}

@@ -24,29 +24,14 @@ export function Nav() {
               key={link.href}
               to={link.href}
               className={({ isActive }) =>
-                `relative whitespace-nowrap py-1 transition-colors hover:text-teal ${
-                  isActive ? "text-teal" : ""
+                `nav-link relative whitespace-nowrap py-1 transition-colors hover:text-teal ${
+                  isActive ? "is-active text-teal" : ""
                 }`
               }
             >
-              {({ isActive }) => (
-                <>
-                  {link.label}
-                  {isActive ? (
-                    <span className="absolute inset-x-0 -bottom-0.5 h-px bg-clay" />
-                  ) : null}
-                </>
-              )}
+              {link.label}
             </NavLink>
           ))}
-          <span
-            className="hidden cursor-default whitespace-nowrap text-ink/35 xl:inline"
-            title={site.nav.language.note}
-          >
-            {site.nav.language.en}
-            <span className="mx-1 text-ink/20">/</span>
-            {site.nav.language.hi}
-          </span>
         </nav>
 
         <div className="hidden lg:block">

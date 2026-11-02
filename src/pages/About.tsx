@@ -23,14 +23,14 @@ export function About() {
           {about.stories.items.map((story, index) => (
             <article
               key={story.id}
-              className={`grid items-center gap-8 md:grid-cols-2 ${
+              className={`group grid items-center gap-8 md:grid-cols-2 ${
                 index % 2 === 1 ? "md:[&>img]:md:order-last" : ""
               }`}
             >
               <img
                 src={story.image.src}
                 alt={story.image.alt}
-                className="h-72 w-full rounded-3xl object-cover md:h-80"
+                className="zoom-img h-72 w-full rounded-3xl object-cover md:h-80"
               />
               <div>
                 <p className="text-xs font-semibold uppercase tracking-[0.18em] text-teal">
@@ -72,7 +72,7 @@ export function About() {
           {about.values.items.map((value) => (
             <article
               key={value.heading}
-              className="rounded-3xl border border-ink/8 bg-mist/40 p-6"
+              className="lift rounded-3xl border border-ink/8 bg-mist/40 p-6"
             >
               <h3 className="font-serif text-2xl text-clay">{value.heading}</h3>
               <p className="mt-3 text-ink/75">{value.body}</p>
@@ -87,12 +87,12 @@ export function About() {
           {about.team.items.map((person) => (
             <article
               key={person.id}
-              className="overflow-hidden rounded-3xl border border-ink/8"
+              className="lift group overflow-hidden rounded-3xl border border-ink/8"
             >
               <img
                 src={person.image.src}
                 alt={person.image.alt}
-                className="h-64 w-full object-cover object-top"
+                className="zoom-img h-64 w-full object-cover object-top"
               />
               <div className="p-5">
                 <h3 className="font-serif text-2xl">{person.name}</h3>
