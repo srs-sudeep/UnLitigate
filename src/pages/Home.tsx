@@ -12,7 +12,8 @@ import { PathsTable } from "../components/ui/PathsTable";
 import { Section } from "../components/ui/Section";
 import { SectionHeader } from "../components/ui/SectionHeader";
 import { SituationIcon } from "../components/ui/SituationIcon";
-import { StatusCard } from "../components/ui/StatusCard";
+import { StatusTrack } from "../components/ui/StatusTrack";
+import { TrustRibbon } from "../components/ui/TrustRibbon";
 import { usePrefersReducedMotion } from "../hooks/usePrefersReducedMotion";
 
 export function Home() {
@@ -139,35 +140,13 @@ export function Home() {
 
       <Section className="py-16 sm:py-24">
         <SectionHeader kicker="Today" heading={home.work.heading} />
-        <div className="grid gap-4 md:grid-cols-3">
-          {home.work.items.map((item) => (
-            <StatusCard
-              key={item.heading}
-              status={item.status}
-              heading={item.heading}
-              body={item.body}
-            />
-          ))}
-        </div>
-        <div className="mt-8">
+        <StatusTrack items={home.work.items} />
+        <div className="mt-10">
           <Button href={home.work.cta.href} variant="outline">
             {home.work.cta.label}
           </Button>
         </div>
-      </Section>
-
-      <Section tone="mist" className="py-12 sm:py-16">
-        <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-5">
-          {home.trust.items.map((item) => (
-            <Link
-              key={item.label}
-              to={item.href}
-              className="lift rounded-2xl border border-ink/10 bg-cream px-4 py-5 text-center text-sm font-medium leading-snug text-ink/80 hover:border-teal/40 hover:text-teal"
-            >
-              {item.label}
-            </Link>
-          ))}
-        </div>
+        <TrustRibbon items={home.trust.items} />
       </Section>
 
       <Section className="py-16 sm:py-24">

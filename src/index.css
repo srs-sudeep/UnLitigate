@@ -63,6 +63,66 @@ html:has(#preloader:not(.is-done)) {
   overflow: hidden;
 }
 
+.page-doors {
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.page-doors.is-visible {
+  visibility: visible;
+  pointer-events: auto;
+}
+
+.page-doors .door-left,
+.page-doors .door-right {
+  transition: transform 0.7s cubic-bezier(0.77, 0, 0.18, 1);
+}
+
+.page-doors .door-left {
+  transform: translateX(-100%);
+}
+
+.page-doors .door-right {
+  transform: translateX(100%);
+}
+
+.page-doors.is-closed .door-left,
+.page-doors.is-closed .door-right {
+  transform: translateX(0);
+}
+
+.page-doors .door-mark {
+  opacity: 0;
+  transform: scale(0.94);
+  transition:
+    opacity 0.45s ease 0.25s,
+    transform 0.45s ease 0.25s;
+}
+
+.page-doors.is-closed .door-mark {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.page-doors .door-thread {
+  stroke-dasharray: 120;
+  stroke-dashoffset: 120;
+  transition: stroke-dashoffset 0.5s ease 0.45s;
+}
+
+.page-doors.is-closed .door-thread {
+  stroke-dashoffset: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .page-doors .door-left,
+  .page-doors .door-right,
+  .page-doors .door-mark,
+  .page-doors .door-thread {
+    transition: none;
+  }
+}
+
 @media (hover: hover) and (prefers-reduced-motion: no-preference) {
   .lift {
     transition:

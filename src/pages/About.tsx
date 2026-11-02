@@ -47,7 +47,7 @@ export function About() {
         </div>
       </Section>
 
-      <Section tone="teal" className="my-12 py-10">
+      <Section tone="teal" className="my-12 py-16 sm:py-24">
         <div className="flex justify-center" aria-hidden="true">
           <svg viewBox="0 0 220 24" className="h-8 w-56">
             <line
@@ -64,18 +64,17 @@ export function About() {
             <circle cx="210" cy="12" r="5" fill="#F7F2EA" />
           </svg>
         </div>
-      </Section>
-
-      <Section className="py-12">
-        <h2 className="font-serif text-3xl sm:text-4xl">{about.values.heading}</h2>
-        <div className="mt-8 grid gap-4 md:grid-cols-3">
-          {about.values.items.map((value) => (
-            <article
-              key={value.heading}
-              className="lift rounded-3xl border border-ink/8 bg-mist/40 p-6"
-            >
-              <h3 className="font-serif text-2xl text-clay">{value.heading}</h3>
-              <p className="mt-3 text-ink/75">{value.body}</p>
+        <h2 className="mt-8 text-center font-serif text-3xl text-cream sm:text-4xl">
+          {about.values.heading}
+        </h2>
+        <div className="mt-12 grid gap-10 md:grid-cols-3 md:gap-8">
+          {about.values.items.map((value, index) => (
+            <article key={value.heading} className="text-center md:text-left">
+              <p className="font-serif text-4xl text-cream/40 sm:text-5xl">
+                {String(index + 1).padStart(2, "0")}
+              </p>
+              <h3 className="mt-2 font-serif text-3xl text-cream">{value.heading}</h3>
+              <p className="mt-3 leading-relaxed text-cream/75">{value.body}</p>
             </article>
           ))}
         </div>

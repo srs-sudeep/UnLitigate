@@ -42,23 +42,28 @@
     "items": [
       {
         "heading": "Supervision",
-        "body": "Student mediators work under a registered mediator / legal aid clinic. The named supervisor will be listed here once confirmed."
+        "body": "Student mediators work under a registered mediator / legal aid clinic. The named supervisor will be listed here once confirmed.",
+        "kind": "rule"
       },
       {
         "heading": "We take",
-        "body": "Suitable business, family and property disputes — where both sides can sit down, and where talking can still help."
+        "body": "Suitable business, family and property disputes — where both sides can sit down, and where talking can still help.",
+        "kind": "take"
       },
       {
         "heading": "We don't take",
-        "body": "Violence, fraud, or criminal matters. Those need a different door."
+        "body": "Violence, fraud, or criminal matters. Those need a different door.",
+        "kind": "leave"
       },
       {
         "heading": "Settlements",
-        "body": "When people agree, it is written down and signed by both sides."
+        "body": "When people agree, it is written down and signed by both sides.",
+        "kind": "rule"
       },
       {
         "heading": "Confidentiality and consent",
-        "body": "No one is forced into the room. What is said is treated as confidential, with the usual limits of the law."
+        "body": "No one is forced into the room. What is said is treated as confidential, with the usual limits of the law.",
+        "kind": "rule"
       }
     ]
   },
