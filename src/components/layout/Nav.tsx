@@ -1,7 +1,8 @@
 import { useState } from "react";
-import { Link, NavLink } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { AnimatePresence, motion } from "motion/react";
 import site from "../../data/site.json";
+import { BrandMark } from "../illustrations/BrandMark";
 import { Button } from "../ui/Button";
 
 export function Nav() {
@@ -10,13 +11,7 @@ export function Nav() {
   return (
     <header className="sticky top-0 z-40 border-b border-ink/8 bg-cream/90 backdrop-blur-md">
       <div className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-5 py-3 sm:px-8">
-        <Link to="/" className="shrink-0" onClick={() => setOpen(false)}>
-          <img
-            src={site.logo.nav.src}
-            alt={site.logo.nav.alt}
-            className="h-9 w-auto sm:h-10"
-          />
-        </Link>
+        <BrandMark onClick={() => setOpen(false)} />
 
         <nav className="hidden items-center gap-4 text-sm text-ink/80 lg:flex xl:gap-7 xl:text-[15px]">
           {site.nav.links.map((link) => (

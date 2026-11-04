@@ -9,7 +9,7 @@ function dismissPreloader() {
   if (!el) return;
 
   const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-  const minMs = reduced ? 0 : 900;
+  const minMs = reduced ? 0 : 1650;
   const started = performance.now();
 
   const hide = () => {
@@ -21,7 +21,7 @@ function dismissPreloader() {
   };
 
   const fonts = document.fonts?.ready ?? Promise.resolve();
-  Promise.race([fonts, new Promise((resolve) => window.setTimeout(resolve, 1600))]).then(
+  Promise.race([fonts, new Promise((resolve) => window.setTimeout(resolve, 2000))]).then(
     hide,
   );
 }

@@ -6,65 +6,129 @@
   "hero": {
     "eyebrow": "What UnLitigate Does",
     "heading": "Three parts, one aim",
-    "body": "Make mediation something people think of first. Here is what is live and what is coming."
+    "body": "Make mediation something people think of first. Here is what is live and what is coming — only in our pilot cities for now."
   },
   "parts": {
     "items": [
       {
+        "id": "awareness",
         "status": "Live now",
         "heading": "Awareness and enquiries",
-        "body": "Reels, posts, this site. We explain mediation in plain language and take enquiries from people who want to understand their options."
+        "body": "Reels, posts, this site. We explain mediation in plain language and take enquiries from people who want to understand their options.",
+        "detail": "No courtroom language. Just a clear first explanation."
       },
       {
+        "id": "mediators",
         "status": "Pilot starting",
         "heading": "Supervised student mediators",
-        "body": "Training and supervision for students who will facilitate suitable disputes in Bhubaneswar and Pune."
+        "body": "Training and supervision for students who will facilitate suitable disputes in Bhubaneswar and Pune.",
+        "detail": "Students guide the talk. Accredited oversight stays in the room."
       },
       {
+        "id": "referrals",
         "status": "Being built",
         "heading": "Referral partnerships",
-        "body": "Working toward links with university mediation centres, so people can be referred to a trusted room."
+        "body": "Working toward links with university mediation centres, so people can be referred to a trusted room.",
+        "detail": "Centres and universities — not a claim that we operate everywhere."
+      }
+    ]
+  },
+  "flow": {
+    "heading": "How a case can move",
+    "subheading": "An educational path — not a promise that every enquiry becomes a mediation.",
+    "items": [
+      {
+        "id": "spot",
+        "heading": "Spot",
+        "body": "Awareness reaches someone who is stuck, worried, or about to file."
+      },
+      {
+        "id": "refer",
+        "heading": "Refer",
+        "body": "Partners and centres help them find a suitable next step."
+      },
+      {
+        "id": "mediate",
+        "heading": "Mediate",
+        "body": "In the pilot cities, supervised students guide a conversation."
+      },
+      {
+        "id": "record",
+        "heading": "Record",
+        "body": "If both sides agree, the terms are written down and signed."
       }
     ]
   },
   "map": {
     "heading": "Where we are",
-    "body": "This is where we are. Soft marks elsewhere stand for people who may be about to give up on a dispute — not real cases, and not a count.",
-    "caption": "Illustrative. Not data about real people or places.",
+    "body": "Soft marks stand for people who may be about to give up on a dispute — not real cases, and not a count. The bright pins are our pilot cities only.",
+    "caption": "Illustrative. Not data about real people or places. Pilot in Bhubaneswar and Pune only.",
     "pins": [
-      { "id": "pune", "label": "Pune", "lat": 18.52, "lon": 73.86 },
-      { "id": "bhubaneswar", "label": "Bhubaneswar", "lat": 20.3, "lon": 85.83 }
+      {
+        "id": "pune",
+        "label": "Pune",
+        "lat": 18.52,
+        "lon": 73.86,
+        "lead": "Madhur",
+        "status": "Pilot starting"
+      },
+      {
+        "id": "bhubaneswar",
+        "label": "Bhubaneswar",
+        "lat": 20.3,
+        "lon": 85.83,
+        "lead": "Anushka Jena",
+        "status": "Pilot starting"
+      }
     ]
   },
   "safeguards": {
     "heading": "Safeguards",
-    "subheading": "For centres, universities and lawyers — and for anyone who needs to know how we work.",
-    "items": [
+    "subheading": "For centres, universities and families — solid enough to scan, calm enough not to feel like a warning.",
+    "cards": [
       {
-        "heading": "Supervision",
-        "body": "Student mediators work under a registered mediator / legal aid clinic. The named supervisor will be listed here once confirmed.",
-        "kind": "rule"
+        "id": "supervised",
+        "icon": "shield",
+        "heading": "Supervised",
+        "summary": "Student mediators work under accredited oversight.",
+        "detail": "A registered mediator or legal-aid clinic stays responsible. The named supervisor will be listed once confirmed."
       },
       {
-        "heading": "We take",
-        "body": "Suitable business, family and property disputes — where both sides can sit down, and where talking can still help.",
-        "kind": "take"
+        "id": "confidential",
+        "icon": "lock",
+        "heading": "Confidential and consent-based",
+        "summary": "No one is forced into the room.",
+        "detail": "What is said is treated carefully, with the usual limits of the law. Consent can be withdrawn."
       },
       {
-        "heading": "We don't take",
-        "body": "Violence, fraud, or criminal matters. Those need a different door.",
-        "kind": "leave"
+        "id": "suitable",
+        "icon": "tick",
+        "heading": "Suitable disputes only",
+        "summary": "We only take matters where talking can still help.",
+        "detail": "Violence, fraud, or criminal matters need a different door. We say so plainly."
       },
       {
-        "heading": "Settlements",
-        "body": "When people agree, it is written down and signed by both sides.",
-        "kind": "rule"
-      },
-      {
-        "heading": "Confidentiality and consent",
-        "body": "No one is forced into the room. What is said is treated as confidential, with the usual limits of the law.",
-        "kind": "rule"
+        "id": "writing",
+        "icon": "document",
+        "heading": "Agreements in writing",
+        "summary": "Settlements are written down and signed.",
+        "detail": "If people agree, the terms are recorded clearly so both sides know what they chose."
       }
+    ],
+    "take": {
+      "heading": "We take",
+      "body": "Suitable business, family and property disputes — where both sides can sit down, and where talking can still help."
+    },
+    "leave": {
+      "heading": "We don't take",
+      "body": "Violence, fraud, or criminal matters. Those need a different door."
+    },
+    "checklist": [
+      "Voluntary for both sides",
+      "Supervised student mediators",
+      "Pilot cities only for now",
+      "Settlements written and signed",
+      "Educational information — not legal advice"
     ]
   },
   "whyNow": {
@@ -73,10 +137,10 @@
   },
   "cta": {
     "heading": "Ready to explore your options?",
-    "body": "Tell us what's happening. We will help you see whether mediation may suit you.",
+    "body": "Tell us what's happening. We will share general information about mediation — not a case assessment.",
     "button": {
       "label": "Explore your options",
-      "href": "form"
+      "href": "/get-in-touch"
     }
   }
 }

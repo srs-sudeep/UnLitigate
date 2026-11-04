@@ -2,6 +2,7 @@ import mediation from "../data/mediation.json";
 import { Seo } from "../components/layout/Seo";
 import { Button } from "../components/ui/Button";
 import { CtaBand } from "../components/ui/CtaBand";
+import { ExampleWalkthrough } from "../components/ui/ExampleWalkthrough";
 import { FaqList } from "../components/ui/FaqList";
 import { PageHero } from "../components/ui/PageHero";
 import { PathsTable } from "../components/ui/PathsTable";
@@ -47,7 +48,7 @@ export function Mediation() {
                 {item.body}
               </p>
               <div className="mt-6">
-                <Button href="form">{mediation.cta.button.label}</Button>
+                <Button href="/get-in-touch">{mediation.cta.button.label}</Button>
               </div>
             </article>
           ))}
@@ -69,6 +70,14 @@ export function Mediation() {
             </li>
           ))}
         </ol>
+      </Section>
+
+      <Section className="pb-8">
+        <ExampleWalkthrough
+          heading={mediation.example.heading}
+          label={mediation.example.label}
+          steps={mediation.example.steps}
+        />
       </Section>
 
       <Section className="pb-8">

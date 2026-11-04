@@ -243,4 +243,45 @@ html:has(#preloader:not(.is-done)) {
     transform-origin: center;
     animation: pin-pulse 2.6s ease-out infinite;
   }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(18px);
+    transition:
+      opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+      transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .situation-arrow {
+    transform: translateX(0);
+    opacity: 0.85;
+    transition:
+      transform 0.3s ease,
+      opacity 0.3s ease;
+  }
+
+  .situation-card:hover .situation-arrow {
+    transform: translateX(6px);
+    opacity: 1;
+  }
+
+  .btn-glow:hover {
+    box-shadow: 0 10px 24px rgba(201, 104, 63, 0.22);
+  }
+
+  .paths-row:hover .paths-mediation {
+    background: rgba(213, 228, 223, 0.95);
+  }
+}
+
+.reveal.is-revealed {
+  opacity: 1;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    opacity: 1;
+    transform: none;
+  }
 }

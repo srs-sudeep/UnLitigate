@@ -116,12 +116,42 @@
       }
     ]
   },
+  "example": {
+    "heading": "A shared wall — step by step",
+    "label": "An example, not a real case",
+    "steps": [
+      {
+        "title": "Two neighbours, one wall",
+        "body": "Asha and Ravi share a boundary wall. Water seepage has damaged both homes. They are tired, and each thinks the other should pay."
+      },
+      {
+        "title": "Someone hears about mediation",
+        "body": "A relative shares a short reel explaining mediation in plain words. It is not legal advice — just the idea that a guided conversation is possible."
+      },
+      {
+        "title": "Both sides are invited",
+        "body": "They are invited to sit down with a supervised student mediator. Either person can decline. Nothing moves without consent."
+      },
+      {
+        "title": "They talk, with a guide in the room",
+        "body": "Each side speaks. The mediator keeps the conversation steady. Nobody decides the outcome for them."
+      },
+      {
+        "title": "They find terms they can live with",
+        "body": "They agree who will repair which stretch, when work starts, and how costs are shared. Not perfect — workable."
+      },
+      {
+        "title": "It is written down",
+        "body": "The terms are written and signed. This example ends here. A real dispute may not. Mediation is voluntary and never guaranteed."
+      }
+    ]
+  },
   "cta": {
     "heading": "Ready to explore your options?",
     "body": "Two minutes. Plain words. You choose what to share.",
     "button": {
       "label": "Explore your options",
-      "href": "form"
+      "href": "/get-in-touch"
     }
   }
 }

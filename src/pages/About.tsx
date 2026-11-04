@@ -1,12 +1,44 @@
+import { useCallback, useEffect, useMemo, useState } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 import about from "../data/about.json";
-import site from "../data/site.json";
 import { SflLockup } from "../components/illustrations/SflLockup";
 import { Seo } from "../components/layout/Seo";
 import { CtaBand } from "../components/ui/CtaBand";
 import { PageHero } from "../components/ui/PageHero";
+import { PersonPanel, type Person } from "../components/ui/PersonPanel";
 import { Section } from "../components/ui/Section";
 
 export function About() {
+  const { hash } = useLocation();
+  const navigate = useNavigate();
+  const people = about.team.items as Person[];
+  const [activeId, setActiveId] = useState<string | null>(null);
+
+  useEffect(() => {
+    const id = hash.replace(/^#/, "");
+    if (id && people.some((person) => person.id === id)) {
+      setActiveId(id);
+    }
+  }, [hash, people]);
+
+  const active = useMemo(
+    () => people.find((person) => person.id === activeId) ?? null,
+    [activeId, people],
+  );
+
+  const openPerson = useCallback(
+    (id: string) => {
+      setActiveId(id);
+      navigate(`/about#${id}`, { replace: true });
+    },
+    [navigate],
+  );
+
+  const closePerson = useCallback(() => {
+    setActiveId(null);
+    navigate("/about", { replace: true });
+  }, [navigate]);
+
   return (
     <>
       <Seo title={about.meta.title} description={about.meta.description} />
@@ -19,30 +51,34 @@ export function About() {
       </Section>
 
       <Section className="pb-8">
-        <div className="space-y-16">
-          {about.stories.items.map((story, index) => (
-            <article
-              key={story.id}
-              className={`group grid items-center gap-8 md:grid-cols-2 ${
-                index % 2 === 1 ? "md:[&>img]:md:order-last" : ""
-              }`}
+        <h2 className="font-serif text-3xl sm:text-4xl">{about.team.heading}</h2>
+        <div className="mt-8 grid gap-5 md:grid-cols-3">
+          {people.map((person) => (
+            <button
+              key={person.id}
+              type="button"
+              id={person.id}
+              onClick={() => openPerson(person.id)}
+              className="lift group scroll-mt-28 overflow-hidden rounded-3xl border border-ink/8 bg-cream text-left"
             >
               <img
-                src={story.image.src}
-                alt={story.image.alt}
-                className="zoom-img h-72 w-full rounded-3xl object-cover md:h-80"
+                src={person.image.src}
+                alt={person.image.alt}
+                className="zoom-img h-64 w-full object-cover object-top"
               />
-              <div>
-                <p className="text-xs font-semibold uppercase tracking-[0.18em] text-teal">
-                  {story.role}
+              <div className="p-5">
+                <h3 className="font-serif text-2xl text-ink group-hover:text-teal">
+                  {person.name}
+                </h3>
+                <p className="mt-1 text-sm text-ink/65">{person.role}</p>
+                <p className="mt-3 text-sm leading-relaxed text-ink/75">
+                  {person.shortBio}
                 </p>
-                <h2 className="mt-2 font-serif text-3xl">{story.heading}</h2>
-                <p className="mt-4 leading-relaxed text-ink/75">{story.body}</p>
-                <p className="mt-4 text-sm font-semibold text-ink">
-                  {story.name}
-                </p>
+                <span className="mt-4 inline-block text-sm font-semibold text-teal">
+                  Read their story →
+                </span>
               </div>
-            </article>
+            </button>
           ))}
         </div>
       </Section>
@@ -81,32 +117,13 @@ export function About() {
       </Section>
 
       <Section className="py-12">
-        <h2 className="font-serif text-3xl sm:text-4xl">{about.team.heading}</h2>
-        <div className="mt-8 grid gap-5 md:grid-cols-3">
-          {about.team.items.map((person) => (
-            <article
-              key={person.id}
-              className="lift group overflow-hidden rounded-3xl border border-ink/8"
-            >
-              <img
-                src={person.image.src}
-                alt={person.image.alt}
-                className="zoom-img h-64 w-full object-cover object-top"
-              />
-              <div className="p-5">
-                <h3 className="font-serif text-2xl">{person.name}</h3>
-                <p className="mt-1 text-sm text-ink/65">{person.role}</p>
-              </div>
-            </article>
-          ))}
-        </div>
-      </Section>
-
-      <Section className="py-12">
         <h2 className="font-serif text-3xl">{about.supporters.heading}</h2>
         <p className="mt-3 max-w-2xl text-ink/75">{about.supporters.body}</p>
         <div className="mt-5">
-          <SflLockup label={site.sfl.label} href={about.supporters.sfl.href} />
+          <SflLockup
+            label={about.supporters.sfl.label}
+            href={about.supporters.sfl.href}
+          />
         </div>
       </Section>
 
@@ -115,6 +132,8 @@ export function About() {
         body={about.cta.body}
         button={about.cta.button}
       />
+
+      <PersonPanel person={active} onClose={closePerson} />
     </>
   );
 }

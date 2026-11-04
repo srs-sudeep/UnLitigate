@@ -9,7 +9,7 @@
     "body": "Court is not the only way to resolve a dispute. Mediation is a guided conversation where both sides work toward an agreement they choose.",
     "primaryCta": {
       "label": "Explore your options",
-      "href": "form"
+      "href": "/get-in-touch"
     },
     "secondaryCta": {
       "label": "See how it works",
@@ -92,36 +92,39 @@
       {
         "id": "anushka",
         "name": "Anushka Jena",
-        "role": "Co-founder",
-        "quote": "Ma'am, you'll have to come to court every day. Are you sure?",
-        "body": "Somewhere in India, someone is about to drop their case. Not because they were wrong. Because fighting costs money, and years of peace. UnLitigate your disputes and choose your agency.",
+        "role": "Co-founder · Bhubaneswar operations",
+        "heading": "The police station",
+        "body": "“Ma’am, you’ll have to come to court every day. Are you sure?”\n\nFor many, that question can make pursuing a dispute feel more daunting than walking away. What begins as a fight for what is right can become years of expenses, uncertainty and lost peace. But resolving a dispute shouldn't always mean preparing for a legal battle. Mediation offers another way: a conversation where people can work towards a resolution and retain a say in the outcome. Somewhere in India, someone is about to drop their case. Not because they were wrong. Because fighting costs money, and years of peace. UnLitigate your disputes. Choose your agency.",
+        "href": "/about#anushka",
         "image": {
-          "src": "/assets/images/anushka.jpg",
-          "alt": "Portrait stand-in for Anushka Jena",
+          "src": "/assets/images/story-anushka.jpg",
+          "alt": "Quiet conversation at a desk, stand-in for Anushka's founding story",
           "credit": "Stock stand-in"
         }
       },
       {
         "id": "madhur",
         "name": "Madhur",
-        "role": "Co-founder",
-        "quote": "A dispute should not swallow a whole year of someone's life.",
-        "body": "Watching people wait — and then give up — is what made this feel urgent. Mediation is a way to stay in the room without giving up the outcome.",
+        "role": "Co-founder · Pune operations",
+        "heading": "The wait",
+        "body": "A dispute should not swallow a whole year of someone's life. Watching people wait — and then give up — is what made this feel urgent. Pune is where that observation became operations: supervised student mediation in a city that moves fast and still gets stuck.",
+        "href": "/about#madhur",
         "image": {
-          "src": "/assets/images/madhur.jpg",
-          "alt": "Portrait stand-in for Madhur",
+          "src": "/assets/images/story-madhur.jpg",
+          "alt": "Campus walkway, stand-in for Madhur's story",
           "credit": "Stock stand-in"
         }
       },
       {
         "id": "prakhar",
         "name": "Prakhar",
-        "role": "Core Team",
-        "quote": "People deserve a first step that does not feel like a fight.",
-        "body": "I joined after the project began because the idea was simple and serious: explain the option clearly, then help people take it.",
+        "role": "Core Team · Partnerships and Outreach",
+        "heading": "After it began",
+        "body": "People deserve a first step that does not feel like a fight. Partnerships are how a student initiative becomes something a worried family can trust — precise about what is live, what is a pilot, and what is still being built.",
+        "href": "/about#prakhar",
         "image": {
-          "src": "/assets/images/prakhar.jpg",
-          "alt": "Portrait stand-in for Prakhar",
+          "src": "/assets/images/story-prakhar.jpg",
+          "alt": "City street at warm light, stand-in for Prakhar's story",
           "credit": "Stock stand-in"
         }
       }
@@ -163,10 +166,6 @@
   "trust": {
     "items": [
       {
-        "label": "Backed by Students for Liberty",
-        "href": "/what-we-do#safeguards"
-      },
-      {
         "label": "Supervised practice",
         "href": "/what-we-do#safeguards"
       },
@@ -184,47 +183,12 @@
       }
     ]
   },
-  "team": {
-    "heading": "Who is behind this",
-    "items": [
-      {
-        "id": "anushka",
-        "name": "Anushka Jena",
-        "role": "Co-founder · Bhubaneswar operations",
-        "image": {
-          "src": "/assets/images/anushka.jpg",
-          "alt": "Portrait stand-in for Anushka Jena",
-          "credit": "Stock stand-in"
-        }
-      },
-      {
-        "id": "madhur",
-        "name": "Madhur",
-        "role": "Co-founder · Pune operations",
-        "image": {
-          "src": "/assets/images/madhur.jpg",
-          "alt": "Portrait stand-in for Madhur",
-          "credit": "Stock stand-in"
-        }
-      },
-      {
-        "id": "prakhar",
-        "name": "Prakhar",
-        "role": "Core Team · Partnerships and Outreach",
-        "image": {
-          "src": "/assets/images/prakhar.jpg",
-          "alt": "Portrait stand-in for Prakhar",
-          "credit": "Stock stand-in"
-        }
-      }
-    ]
-  },
   "cta": {
     "heading": "Ready to explore your options?",
     "body": "Tell us what's happening. Two minutes, plain words, and you choose what to share.",
     "button": {
       "label": "Explore your options",
-      "href": "form"
+      "href": "/get-in-touch"
     }
   }
 }

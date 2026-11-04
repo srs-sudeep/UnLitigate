@@ -1,10 +1,12 @@
 import whatWeDo from "../data/whatWeDo.json";
 import { IndiaMap } from "../components/illustrations/IndiaMap";
 import { Seo } from "../components/layout/Seo";
+import { CaseFlow } from "../components/ui/CaseFlow";
 import { CtaBand } from "../components/ui/CtaBand";
 import { PageHero } from "../components/ui/PageHero";
+import { PartsScrollStory } from "../components/ui/PartsScrollStory";
+import { SafeguardsPanel } from "../components/ui/SafeguardsPanel";
 import { Section } from "../components/ui/Section";
-import { StatusTrack } from "../components/ui/StatusTrack";
 import { usePrefersReducedMotion } from "../hooks/usePrefersReducedMotion";
 
 export function WhatWeDo() {
@@ -22,7 +24,15 @@ export function WhatWeDo() {
       </Section>
 
       <Section className="pb-16">
-        <StatusTrack items={whatWeDo.parts.items} />
+        <PartsScrollStory items={whatWeDo.parts.items} />
+      </Section>
+
+      <Section tone="mist" className="py-16 sm:py-24">
+        <CaseFlow
+          heading={whatWeDo.flow.heading}
+          subheading={whatWeDo.flow.subheading}
+          items={whatWeDo.flow.items}
+        />
       </Section>
 
       <Section className="pb-16">
@@ -35,61 +45,18 @@ export function WhatWeDo() {
         />
       </Section>
 
-      <Section id="safeguards" tone="mist" className="py-16 sm:py-24">
-        <div className="grid gap-10 lg:grid-cols-[0.85fr_1.15fr] lg:gap-16">
-          <div>
-            <h2 className="font-serif text-3xl sm:text-4xl">
-              {whatWeDo.safeguards.heading}
-            </h2>
-            <p className="mt-4 max-w-md text-lg leading-relaxed text-ink/70">
-              {whatWeDo.safeguards.subheading}
-            </p>
-          </div>
-          <div>
-            <div className="grid gap-3 sm:grid-cols-2">
-              {whatWeDo.safeguards.items
-                .filter((item) => item.kind === "take" || item.kind === "leave")
-                .map((item) => (
-                  <article
-                    key={item.heading}
-                    className={`rounded-3xl p-6 sm:p-7 ${
-                      item.kind === "take"
-                        ? "bg-teal text-cream"
-                        : "border border-ink/10 bg-cream"
-                    }`}
-                  >
-                    <p
-                      className={`text-[11px] font-semibold uppercase tracking-[0.18em] ${
-                        item.kind === "take" ? "text-cream/70" : "text-clay"
-                      }`}
-                    >
-                      {item.heading}
-                    </p>
-                    <p
-                      className={`mt-3 leading-relaxed ${
-                        item.kind === "take" ? "text-cream/90" : "text-ink/75"
-                      }`}
-                    >
-                      {item.body}
-                    </p>
-                  </article>
-                ))}
-            </div>
-            <ul className="mt-2 divide-y divide-ink/10">
-              {whatWeDo.safeguards.items
-                .filter((item) => item.kind === "rule")
-                .map((item) => (
-                  <li key={item.heading} className="py-5 first:pt-6">
-                    <h3 className="font-serif text-xl text-ink">{item.heading}</h3>
-                    <p className="mt-2 leading-relaxed text-ink/70">{item.body}</p>
-                  </li>
-                ))}
-            </ul>
-          </div>
-        </div>
+      <Section tone="mist" className="py-16 sm:py-24">
+        <SafeguardsPanel
+          heading={whatWeDo.safeguards.heading}
+          subheading={whatWeDo.safeguards.subheading}
+          cards={whatWeDo.safeguards.cards}
+          take={whatWeDo.safeguards.take}
+          leave={whatWeDo.safeguards.leave}
+          checklist={whatWeDo.safeguards.checklist}
+        />
       </Section>
 
-      <Section className="py-16 sm:py-20">
+      <Section className="py-16">
         <h2 className="font-serif text-3xl sm:text-4xl">{whatWeDo.whyNow.heading}</h2>
         <p className="mt-4 max-w-3xl text-lg leading-relaxed text-ink/75">
           {whatWeDo.whyNow.body}

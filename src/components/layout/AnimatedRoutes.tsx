@@ -5,6 +5,7 @@ import site from "../../data/site.json";
 import { About } from "../../pages/About";
 import { Contact } from "../../pages/Contact";
 import { Home } from "../../pages/Home";
+import { Legal } from "../../pages/Legal";
 import { Mediation } from "../../pages/Mediation";
 import { NotFound } from "../../pages/NotFound";
 import { ServerError } from "../../pages/ServerError";
@@ -17,6 +18,8 @@ function pageLabel(pathname: string) {
   const nav = site.nav.links.find((link) => link.href === pathname);
   if (nav) return nav.label;
   if (pathname === "/get-in-touch") return site.nav.cta.label;
+  if (pathname === "/disclaimer") return "Disclaimer";
+  if (pathname === "/privacy") return "Privacy Policy";
   if (pathname === "/500") return "Something snagged";
   return site.name;
 }
@@ -125,6 +128,8 @@ export function AnimatedRoutes() {
           <Route path="what-we-do" element={<WhatWeDo />} />
           <Route path="about" element={<About />} />
           <Route path="get-in-touch" element={<Contact />} />
+          <Route path="disclaimer" element={<Legal kind="disclaimer" />} />
+          <Route path="privacy" element={<Legal kind="privacy" />} />
           <Route path="500" element={<ServerError />} />
           <Route path="*" element={<NotFound />} />
         </Route>

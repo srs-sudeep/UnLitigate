@@ -3,6 +3,7 @@ import { Outlet, useLocation } from "react-router-dom";
 import { useLenis } from "../../hooks/useLenis";
 import { usePrefersReducedMotion } from "../../hooks/usePrefersReducedMotion";
 import { scrollToTarget } from "../../lib/lenis";
+import { DisclaimerModal } from "./DisclaimerModal";
 import { ErrorBoundary } from "./ErrorBoundary";
 import { Footer } from "./Footer";
 import { Nav } from "./Nav";
@@ -40,6 +41,7 @@ export function Layout() {
       </main>
       <Footer />
       <StickyCta />
+      <DisclaimerModal />
     </div>
   );
 }

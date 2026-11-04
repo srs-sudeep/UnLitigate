@@ -1,18 +1,27 @@
+import { Link } from "react-router-dom";
 import site from "../../data/site.json";
+import { BrandMark } from "../illustrations/BrandMark";
 
 export function Footer() {
   return (
     <footer className="bg-ink text-cream">
       <div className="mx-auto flex max-w-6xl flex-col gap-10 px-5 py-12 sm:px-8 md:flex-row md:items-start md:justify-between">
         <div className="max-w-lg">
-          <img
-            src={site.logo.inverted.src}
-            alt={site.logo.inverted.alt}
-            className="h-9 w-auto"
-          />
+          <BrandMark tone="cream" size="footer" />
           <p className="mt-5 text-sm leading-relaxed text-cream/70">
             {site.footer.disclaimer}
           </p>
+          <div className="mt-5 flex flex-wrap gap-x-5 gap-y-2 text-sm">
+            {site.footer.links.map((link) => (
+              <Link
+                key={link.href}
+                to={link.href}
+                className="text-cream/85 underline-offset-4 hover:text-cream hover:underline"
+              >
+                {link.label}
+              </Link>
+            ))}
+          </div>
         </div>
         <div className="flex flex-col items-start gap-3 text-sm md:items-end">
           <div className="flex flex-wrap gap-x-4 gap-y-2">

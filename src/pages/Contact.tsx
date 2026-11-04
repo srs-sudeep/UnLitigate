@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import contact from "../data/contact.json";
 import site from "../data/site.json";
 import { Seo } from "../components/layout/Seo";
@@ -27,7 +28,19 @@ export function Contact() {
             >
               <span className="font-serif text-3xl text-clay">{step.number}</span>
               <h3 className="mt-2 font-serif text-2xl">{step.heading}</h3>
-              <p className="mt-2 leading-relaxed text-ink/70">{step.body}</p>
+              <p className="mt-2 leading-relaxed text-ink/70">
+                {step.body.includes("Privacy Policy") ? (
+                  <>
+                    {step.body.split("Privacy Policy")[0]}
+                    <Link to="/privacy" className="font-semibold text-teal hover:underline">
+                      Privacy Policy
+                    </Link>
+                    {step.body.split("Privacy Policy")[1]}
+                  </>
+                ) : (
+                  step.body
+                )}
+              </p>
             </li>
           ))}
         </ol>

@@ -1,0 +1,60 @@
+{
+  "disclaimer": {
+    "meta": {
+      "title": "Disclaimer — UnLitigate",
+      "description": "UnLitigate shares educational information about mediation. It is not legal advice."
+    },
+    "eyebrow": "Disclaimer",
+    "heading": "Educational information only",
+    "draftNote": "Draft copy — final text coming from Anushka.",
+    "sections": [
+      {
+        "heading": "Not legal advice",
+        "body": "UnLitigate shares general, educational information about mediation and dispute resolution in India. Nothing on this site is legal advice. We are not a law firm. Reading this site, watching our content, or filling a form does not create a lawyer–client relationship."
+      },
+      {
+        "heading": "No case assessment",
+        "body": "When you contact us, we may share plain-language information about how mediation generally works. We do not assess whether your dispute will succeed, and we do not tell you what you should do in court."
+      },
+      {
+        "heading": "Pilot scope",
+        "body": "Any supervised student mediation mentioned on this site is a pilot limited to Bhubaneswar and Pune. We do not claim to provide mediation services in every city."
+      },
+      {
+        "heading": "When to seek professional help",
+        "body": "If you need advice about your rights, deadlines, or filings, speak to a qualified lawyer or an appropriate legal-aid service. If there is violence, fraud, or criminal risk, seek help through the proper channels — mediation is not the right door."
+      }
+    ]
+  },
+  "privacy": {
+    "meta": {
+      "title": "Privacy Policy — UnLitigate",
+      "description": "How UnLitigate handles information you share with us."
+    },
+    "eyebrow": "Privacy Policy",
+    "heading": "How we handle what you share",
+    "draftNote": "Draft copy — final text coming from Anushka.",
+    "sections": [
+      {
+        "heading": "What we collect",
+        "body": "If you open our enquiry form, Google Forms (or the form tool we use) may collect the details you choose to enter — such as name, contact details, city, and a short description of your situation. Please do not share government-issued ID or bank details."
+      },
+      {
+        "heading": "How we use it",
+        "body": "We use what you send so a person on the team can reply with general, educational information about mediation. A supervisor may need to see a form when student mediators are involved. We do not sell your information."
+      },
+      {
+        "heading": "Confidentiality — with limits",
+        "body": "We treat what you share with care. Absolute confidentiality cannot always be promised — for example, if a supervisor needs to review an enquiry, or if the law requires disclosure. Our aim is to keep your information within the smallest circle needed to respond helpfully."
+      },
+      {
+        "heading": "Analytics",
+        "body": "We may use simple analytics to understand how visitors find this site (for example, which pages are opened). This helps us improve the site. Form-open clicks may also be counted so we can see how many visitors take that step."
+      },
+      {
+        "heading": "Contact",
+        "body": "Questions about this policy can be sent to hello@unlitigate.org."
+      }
+    ]
+  }
+}

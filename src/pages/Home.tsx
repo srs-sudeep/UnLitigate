@@ -1,10 +1,8 @@
 import { Link } from "react-router-dom";
 import { motion } from "motion/react";
 import home from "../data/home.json";
-import site from "../data/site.json";
 import { BenchThread } from "../components/illustrations/BenchThread";
 import { Doors } from "../components/illustrations/Doors";
-import { SflLockup } from "../components/illustrations/SflLockup";
 import { Seo } from "../components/layout/Seo";
 import { Button } from "../components/ui/Button";
 import { CtaBand } from "../components/ui/CtaBand";
@@ -13,6 +11,8 @@ import { Section } from "../components/ui/Section";
 import { SectionHeader } from "../components/ui/SectionHeader";
 import { SituationIcon } from "../components/ui/SituationIcon";
 import { StatusTrack } from "../components/ui/StatusTrack";
+import { StoryCards } from "../components/ui/StoryCards";
+import { Reveal } from "../components/ui/Reveal";
 import { TrustRibbon } from "../components/ui/TrustRibbon";
 import { usePrefersReducedMotion } from "../hooks/usePrefersReducedMotion";
 
@@ -43,9 +43,6 @@ export function Home() {
                 {home.hero.secondaryCta.label}
               </Button>
             </div>
-            <div className="mt-6">
-              <SflLockup label={site.sfl.label} href={site.sfl.href} />
-            </div>
           </div>
           <Doors
             court={home.hero.doors.court}
@@ -57,43 +54,50 @@ export function Home() {
       </Section>
 
       <Section tone="mist" className="py-16 sm:py-24">
-        <SectionHeader
-          kicker="Start here"
-          heading={home.situations.heading}
-          subheading={home.situations.subheading}
-        />
-        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-          {home.situations.items.map((item, i) => (
-            <motion.div
-              key={item.id}
-              initial={reduced ? false : { opacity: 0, y: 16 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.4 }}
-              transition={{ delay: i * 0.06, duration: 0.45 }}
-            >
-              <Link
-                to={item.href}
-                className="lift group block h-full rounded-3xl border border-ink/8 bg-cream p-5"
+        <Reveal>
+          <SectionHeader
+            kicker="Start here"
+            heading={home.situations.heading}
+            subheading={home.situations.subheading}
+          />
+          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+            {home.situations.items.map((item, i) => (
+              <motion.div
+                key={item.id}
+                initial={reduced ? false : { opacity: 0, y: 16 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.4 }}
+                transition={{ delay: i * 0.06, duration: 0.45 }}
               >
-                <SituationIcon id={item.id} />
-                <h3 className="mt-4 font-serif text-xl text-ink">{item.heading}</h3>
-                <p className="mt-2 text-sm leading-relaxed text-ink/70">
-                  {item.body}
-                </p>
-              </Link>
-            </motion.div>
-          ))}
-        </div>
+                <Link
+                  to={item.href}
+                  className="lift situation-card group block h-full rounded-3xl border border-ink/8 bg-cream p-5"
+                >
+                  <SituationIcon id={item.id} />
+                  <h3 className="mt-4 font-serif text-xl text-ink">{item.heading}</h3>
+                  <p className="mt-2 text-sm leading-relaxed text-ink/70">
+                    {item.body}
+                  </p>
+                  <span className="situation-arrow mt-4 inline-block text-sm font-semibold text-teal">
+                    Read more →
+                  </span>
+                </Link>
+              </motion.div>
+            ))}
+          </div>
+        </Reveal>
       </Section>
 
       <Section className="py-16 sm:py-24">
-        <SectionHeader kicker="Court or conversation" heading={home.paths.heading} />
-        <PathsTable
-          courtLabel={home.paths.courtLabel}
-          mediationLabel={home.paths.mediationLabel}
-          rows={home.paths.rows}
-          footnote={home.paths.footnote}
-        />
+        <Reveal>
+          <SectionHeader kicker="Court or conversation" heading={home.paths.heading} />
+          <PathsTable
+            courtLabel={home.paths.courtLabel}
+            mediationLabel={home.paths.mediationLabel}
+            rows={home.paths.rows}
+            footnote={home.paths.footnote}
+          />
+        </Reveal>
       </Section>
 
       <Section tone="mist" className="py-16 sm:py-24">
@@ -102,31 +106,7 @@ export function Home() {
           heading={home.stories.heading}
           subheading={home.stories.subheading}
         />
-        <div className="grid gap-5 md:grid-cols-3">
-          {home.stories.items.map((story) => (
-            <article
-              key={story.id}
-              className="lift group overflow-hidden rounded-3xl border border-ink/8 bg-cream"
-            >
-              <img
-                src={story.image.src}
-                alt={story.image.alt}
-                className="zoom-img h-56 w-full object-cover"
-              />
-              <div className="p-6">
-                <p className="font-serif text-xl leading-snug text-ink">
-                  “{story.quote}”
-                </p>
-                <p className="mt-3 text-sm leading-relaxed text-ink/70">
-                  {story.body}
-                </p>
-                <p className="mt-4 text-sm font-semibold text-teal">
-                  {story.name}, {story.role}
-                </p>
-              </div>
-            </article>
-          ))}
-        </div>
+        <StoryCards items={home.stories.items} />
       </Section>
 
       <Section tone="teal" className="py-20 sm:py-28">
@@ -139,36 +119,16 @@ export function Home() {
       </Section>
 
       <Section className="py-16 sm:py-24">
-        <SectionHeader kicker="Today" heading={home.work.heading} />
-        <StatusTrack items={home.work.items} />
-        <div className="mt-10">
-          <Button href={home.work.cta.href} variant="outline">
-            {home.work.cta.label}
-          </Button>
-        </div>
-        <TrustRibbon items={home.trust.items} />
-      </Section>
-
-      <Section className="py-16 sm:py-24">
-        <SectionHeader kicker="The team" heading={home.team.heading} />
-        <div className="grid gap-5 md:grid-cols-3">
-          {home.team.items.map((person) => (
-            <article
-              key={person.id}
-              className="lift group overflow-hidden rounded-3xl border border-ink/8 bg-mist/40"
-            >
-              <img
-                src={person.image.src}
-                alt={person.image.alt}
-                className="zoom-img h-64 w-full object-cover object-top"
-              />
-              <div className="p-5">
-                <h3 className="font-serif text-2xl">{person.name}</h3>
-                <p className="mt-1 text-sm text-ink/65">{person.role}</p>
-              </div>
-            </article>
-          ))}
-        </div>
+        <Reveal>
+          <SectionHeader kicker="Today" heading={home.work.heading} />
+          <StatusTrack items={home.work.items} />
+          <div className="mt-10">
+            <Button href={home.work.cta.href} variant="outline">
+              {home.work.cta.label}
+            </Button>
+          </div>
+          <TrustRibbon items={home.trust.items} />
+        </Reveal>
       </Section>
 
       <CtaBand

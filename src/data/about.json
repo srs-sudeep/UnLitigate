@@ -1,29 +1,32 @@
 {
   "meta": {
     "title": "About Us — UnLitigate",
-    "description": "Why we started. UnLitigate is a student-led, non-commercial initiative backed by Students for Liberty, working to make mediation a first choice in India."
+    "description": "Meet the student-led team behind UnLitigate. A non-commercial initiative working to make mediation a first choice in India."
   },
   "hero": {
     "eyebrow": "About Us",
-    "heading": "Why we started",
-    "body": "A student-led, non-commercial social impact initiative. Backed by Students for Liberty."
+    "heading": "The people behind UnLitigate",
+    "body": "A student-led, non-commercial social impact initiative. Meet the team — and tap a photo to read their story."
   },
-  "stories": {
+  "team": {
+    "heading": "The team",
     "items": [
       {
         "id": "anushka",
         "name": "Anushka Jena",
         "role": "Co-founder · Bhubaneswar operations",
-        "heading": "The police station",
-        "body": "The officer's question was quiet and practical: she would have to come to court every day. Was she sure? She was ready to file. Instead she went looking for a way to settle the dispute without giving up. That search is why UnLitigate exists. Choosing mediation is not a soft option. It is taking control of how a dispute ends — through a conversation, on your terms. Somewhere in India, someone is about to drop their case. Not because they were wrong. Because fighting costs years of peace. We built this so they have somewhere to look first.",
+        "shortBio": "Building the Bhubaneswar pilot so people hear about mediation before court feels like the only door.",
+        "storyHeading": "The police station",
+        "story": "“Ma’am, you’ll have to come to court every day. Are you sure?”\n\nFor many, that question can make pursuing a dispute feel more daunting than walking away. What begins as a fight for what is right can become years of expenses, uncertainty and lost peace. But resolving a dispute shouldn't always mean preparing for a legal battle. Mediation offers another way: a conversation where people can work towards a resolution and retain a say in the outcome. Somewhere in India, someone is about to drop their case. Not because they were wrong. Because fighting costs money, and years of peace. UnLitigate your disputes. Choose your agency.",
+        "detailsHref": "",
         "image": {
-          "src": "/assets/images/story-anushka.jpg",
-          "alt": "Quiet conversation at a desk, stand-in for Anushka's founding story",
-          "credit": "Stock stand-in"
-        },
-        "portrait": {
           "src": "/assets/images/anushka.jpg",
           "alt": "Portrait stand-in for Anushka Jena",
+          "credit": "Stock stand-in — replace with Anushka's headshot"
+        },
+        "scene": {
+          "src": "/assets/images/story-anushka.jpg",
+          "alt": "Quiet conversation at a desk, stand-in for Anushka's founding story",
           "credit": "Stock stand-in"
         }
       },
@@ -31,16 +34,18 @@
         "id": "madhur",
         "name": "Madhur",
         "role": "Co-founder · Pune operations",
-        "heading": "The wait",
-        "body": "A dispute should not swallow a whole year of someone's life. Madhur saw how often people wait, then give up, not because the other side was right but because the process was heavier than the problem. Pune is where that observation became operations: a place to try supervised student mediation in a city that moves fast and still gets stuck. The work is practical. Train. Sit down. Write it down. Stay honest about what we can and cannot take. If the other side will not come, we say so. If they will, we make the room calm enough to talk.",
+        "shortBio": "Running Pune operations so supervised student mediation has a calm, practical home.",
+        "storyHeading": "The wait",
+        "story": "A dispute should not swallow a whole year of someone's life. Madhur saw how often people wait, then give up, not because the other side was right but because the process was heavier than the problem. Pune is where that observation became operations: a place to try supervised student mediation in a city that moves fast and still gets stuck. The work is practical. Train. Sit down. Write it down. Stay honest about what we can and cannot take. If the other side will not come, we say so. If they will, we make the room calm enough to talk.",
+        "detailsHref": "",
         "image": {
-          "src": "/assets/images/story-madhur.jpg",
-          "alt": "Campus walkway, stand-in for Madhur's story",
-          "credit": "Stock stand-in"
-        },
-        "portrait": {
           "src": "/assets/images/madhur.jpg",
           "alt": "Portrait stand-in for Madhur",
+          "credit": "Stock stand-in — replace with Madhur's headshot"
+        },
+        "scene": {
+          "src": "/assets/images/story-madhur.jpg",
+          "alt": "Campus walkway, stand-in for Madhur's story",
           "credit": "Stock stand-in"
         }
       },
@@ -48,16 +53,18 @@
         "id": "prakhar",
         "name": "Prakhar",
         "role": "Core Team · Partnerships and Outreach",
-        "heading": "After it began",
-        "body": "Prakhar joined after the project had a name, because the idea was already clear and still needed people who could carry it to universities, centres and anyone who would otherwise never hear the word mediation. Partnerships are how a student initiative becomes something a worried family can trust. The job is to be precise: what is live, what is a pilot, what is still being built. No slogans. Real moments. A first step that does not feel like a fight.",
+        "shortBio": "Carrying the idea to universities, centres and anyone who would otherwise never hear the word mediation.",
+        "storyHeading": "After it began",
+        "story": "Prakhar joined after the project had a name, because the idea was already clear and still needed people who could carry it to universities, centres and anyone who would otherwise never hear the word mediation. Partnerships are how a student initiative becomes something a worried family can trust. The job is to be precise: what is live, what is a pilot, what is still being built. No slogans. Real moments. A first step that does not feel like a fight.",
+        "detailsHref": "",
         "image": {
-          "src": "/assets/images/story-prakhar.jpg",
-          "alt": "City street at warm light, stand-in for Prakhar's story",
-          "credit": "Stock stand-in"
-        },
-        "portrait": {
           "src": "/assets/images/prakhar.jpg",
           "alt": "Portrait stand-in for Prakhar",
+          "credit": "Stock stand-in — replace with Prakhar's headshot"
+        },
+        "scene": {
+          "src": "/assets/images/story-prakhar.jpg",
+          "alt": "City street at warm light, stand-in for Prakhar's story",
           "credit": "Stock stand-in"
         }
       }
@@ -71,46 +78,11 @@
       { "heading": "Plain", "body": "We use ordinary words. This is not a law firm." }
     ]
   },
-  "team": {
-    "heading": "The people",
-    "items": [
-      {
-        "id": "anushka",
-        "name": "Anushka Jena",
-        "role": "Co-founder · Bhubaneswar operations",
-        "image": {
-          "src": "/assets/images/anushka.jpg",
-          "alt": "Portrait stand-in for Anushka Jena",
-          "credit": "Stock stand-in"
-        }
-      },
-      {
-        "id": "madhur",
-        "name": "Madhur",
-        "role": "Co-founder · Pune operations",
-        "image": {
-          "src": "/assets/images/madhur.jpg",
-          "alt": "Portrait stand-in for Madhur",
-          "credit": "Stock stand-in"
-        }
-      },
-      {
-        "id": "prakhar",
-        "name": "Prakhar",
-        "role": "Core Team · Partnerships and Outreach",
-        "image": {
-          "src": "/assets/images/prakhar.jpg",
-          "alt": "Portrait stand-in for Prakhar",
-          "credit": "Stock stand-in"
-        }
-      }
-    ]
-  },
   "supporters": {
     "heading": "Supporters",
-    "body": "Backed by Students for Liberty. Supervision of the pilot will be named here once confirmed.",
+    "body": "Supervision of the pilot will be named here once confirmed.",
     "sfl": {
-      "label": "Students for Liberty",
+      "label": "An SFL Impact Project, backed by Students for Liberty",
       "href": "https://studentsforliberty.org/"
     }
   },
@@ -119,7 +91,7 @@
     "body": "Tell us what's happening. Two minutes, plain words.",
     "button": {
       "label": "Explore your options",
-      "href": "form"
+      "href": "/get-in-touch"
     }
   }
 }

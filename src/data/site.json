@@ -42,7 +42,7 @@
   "form": {
     "url": "https://forms.gle/REPLACE_WITH_REAL_FORM",
     "newTab": true,
-    "privacyNote": "Please don't share ID or bank details."
+    "privacyNote": "Please don't share any government-issued ID or bank details."
   },
   "social": {
     "email": {
@@ -59,7 +59,17 @@
     }
   },
   "footer": {
-    "disclaimer": "UnLitigate shares general information about mediation. It is not legal advice. We use simple analytics to understand how visitors find this site."
+    "disclaimer": "UnLitigate shares general information about mediation. It is not legal advice. We use simple analytics to understand how visitors find this site.",
+    "links": [
+      { "label": "Disclaimer", "href": "/disclaimer" },
+      { "label": "Privacy Policy", "href": "/privacy" }
+    ]
+  },
+  "disclaimerModal": {
+    "heading": "Before you continue",
+    "body": "UnLitigate shares general, educational information about mediation. It is not a law firm and does not give legal advice. Reading this site or filling a form does not create a lawyer–client relationship.",
+    "ack": "I understand",
+    "more": { "label": "Read the full disclaimer", "href": "/disclaimer" }
   },
   "stickyCta": {
     "label": "Get in Touch",

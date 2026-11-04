@@ -1,7 +1,7 @@
 {
   "meta": {
     "title": "Get in Touch — UnLitigate",
-    "description": "Tell us what's happening. Two minutes. Plain words. You choose what to share. Please don't share ID or bank details."
+    "description": "Tell us what's happening. Two minutes. Plain words. You choose what to share. Please don't share any government-issued ID or bank details."
   },
   "hero": {
     "eyebrow": "Get in Touch",
@@ -23,13 +23,13 @@
       },
       {
         "number": "3",
-        "heading": "We explain your options",
-        "body": "Including whether mediation may suit you — and when it may not."
+        "heading": "Learn about mediation",
+        "body": "We share general, educational information about how mediation works. This is not legal advice and we do not assess your case. What you share is kept confidential, as explained in our Privacy Policy."
       }
     ]
   },
   "form": {
-    "note": "Please don't share ID or bank details.",
+    "note": "Please don't share any government-issued ID or bank details.",
     "button": {
       "label": "Open the form →",
       "href": "form"

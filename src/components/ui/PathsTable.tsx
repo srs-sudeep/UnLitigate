@@ -1,3 +1,6 @@
+import { motion } from "motion/react";
+import { usePrefersReducedMotion } from "../../hooks/usePrefersReducedMotion";
+
 type Row = { label: string; court: string; mediation: string };
 
 type PathsTableProps = {
@@ -15,10 +18,12 @@ export function PathsTable({
   rows,
   footnote,
 }: PathsTableProps) {
+  const reduced = usePrefersReducedMotion();
+
   return (
     <div>
       {heading ? (
-        <h2 className="font-serif text-3xl sm:text-4xl text-ink">{heading}</h2>
+        <h2 className="font-serif text-3xl text-ink sm:text-4xl">{heading}</h2>
       ) : null}
 
       <div className="mt-8 overflow-hidden rounded-3xl border border-ink/10 bg-cream">
@@ -29,9 +34,13 @@ export function PathsTable({
         </div>
 
         {rows.map((row, index) => (
-          <div
+          <motion.div
             key={row.label}
-            className={`grid grid-cols-1 transition-colors duration-200 hover:bg-mist/30 sm:grid-cols-[7.5rem_1fr_1fr] ${
+            initial={reduced ? false : { opacity: 0, y: 12 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.5 }}
+            transition={{ delay: index * 0.06, duration: 0.4 }}
+            className={`paths-row grid grid-cols-1 transition-colors duration-200 hover:bg-mist/30 sm:grid-cols-[7.5rem_1fr_1fr] ${
               index !== rows.length - 1 ? "border-b border-ink/10" : ""
             }`}
           >
@@ -42,11 +51,11 @@ export function PathsTable({
               <div className="border-t border-ink/8 px-4 py-4 text-[15px] leading-relaxed text-ink/75 sm:border-t-0 sm:border-r sm:border-ink/10">
                 {row.court}
               </div>
-              <div className="border-t border-ink/8 bg-mist/50 px-4 py-4 text-[15px] leading-relaxed text-teal sm:border-t-0">
+              <div className="paths-mediation border-t border-ink/8 bg-mist/50 px-4 py-4 text-[15px] leading-relaxed text-teal sm:border-t-0">
                 {row.mediation}
               </div>
             </div>
-          </div>
+          </motion.div>
         ))}
       </div>
 
