@@ -5,6 +5,7 @@ import { CaseFlow } from "../components/ui/CaseFlow";
 import { CtaBand } from "../components/ui/CtaBand";
 import { PageHero } from "../components/ui/PageHero";
 import { PartsScrollStory } from "../components/ui/PartsScrollStory";
+import { Reveal } from "../components/ui/Reveal";
 import { SafeguardsPanel } from "../components/ui/SafeguardsPanel";
 import { Section } from "../components/ui/Section";
 import { usePrefersReducedMotion } from "../hooks/usePrefersReducedMotion";
@@ -35,11 +36,13 @@ export function WhatWeDo() {
         />
       </Section>
 
-      <Section className="pb-16">
+      <Section tone="teal" className="py-16 sm:py-24">
         <IndiaMap
+          eyebrow={whatWeDo.map.eyebrow}
           heading={whatWeDo.map.heading}
           body={whatWeDo.map.body}
           caption={whatWeDo.map.caption}
+          hint={whatWeDo.map.hint}
           pins={whatWeDo.map.pins}
           reducedMotion={reduced}
         />
@@ -52,15 +55,16 @@ export function WhatWeDo() {
           cards={whatWeDo.safeguards.cards}
           take={whatWeDo.safeguards.take}
           leave={whatWeDo.safeguards.leave}
-          checklist={whatWeDo.safeguards.checklist}
         />
       </Section>
 
       <Section className="py-16">
-        <h2 className="font-serif text-3xl sm:text-4xl">{whatWeDo.whyNow.heading}</h2>
-        <p className="mt-4 max-w-3xl text-lg leading-relaxed text-ink/75">
-          {whatWeDo.whyNow.body}
-        </p>
+        <Reveal>
+          <h2 className="font-serif text-3xl sm:text-4xl">{whatWeDo.whyNow.heading}</h2>
+          <p className="mt-4 max-w-3xl text-lg leading-relaxed text-ink/75">
+            {whatWeDo.whyNow.body}
+          </p>
+        </Reveal>
       </Section>
 
       <CtaBand

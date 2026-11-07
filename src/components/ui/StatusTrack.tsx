@@ -1,3 +1,10 @@
+import { useLayoutEffect, useRef } from "react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { usePrefersReducedMotion } from "../../hooks/usePrefersReducedMotion";
+
+gsap.registerPlugin(ScrollTrigger);
+
 type Item = {
   status: string;
   heading: string;
@@ -17,9 +24,46 @@ const kickerClass: Record<string, string> = {
 };
 
 export function StatusTrack({ items }: { items: Item[] }) {
+  const rootRef = useRef<HTMLOListElement>(null);
+  const lineRef = useRef<HTMLSpanElement>(null);
+  const reduced = usePrefersReducedMotion();
+
+  useLayoutEffect(() => {
+    if (reduced) return;
+    const root = rootRef.current;
+    if (!root) return;
+
+    const ctx = gsap.context(() => {
+      gsap.from(".status-node", {
+        scale: 0,
+        transformOrigin: "center",
+        stagger: 0.12,
+        duration: 0.45,
+        ease: "back.out(1.7)",
+        scrollTrigger: { trigger: root, start: "top 72%" },
+      });
+      if (lineRef.current) {
+        gsap.fromTo(
+          lineRef.current,
+          { scaleX: 0 },
+          {
+            scaleX: 1,
+            transformOrigin: "left center",
+            duration: 0.7,
+            ease: "power2.out",
+            scrollTrigger: { trigger: root, start: "top 72%" },
+          },
+        );
+      }
+    }, root);
+
+    return () => ctx.revert();
+  }, [reduced]);
+
   return (
-    <ol className="relative grid gap-10 md:grid-cols-3 md:gap-8">
+    <ol ref={rootRef} className="relative grid gap-10 md:grid-cols-3 md:gap-8">
       <span
+        ref={lineRef}
         className="pointer-events-none absolute top-[7px] right-[16.6%] left-[16.6%] hidden h-px bg-ink/15 md:block"
         aria-hidden="true"
       />
@@ -29,7 +73,7 @@ export function StatusTrack({ items }: { items: Item[] }) {
           className="relative border-l border-ink/15 pl-6 md:border-l-0 md:pl-0 md:text-center"
         >
           <span
-            className={`absolute top-0.5 left-0 inline-block h-3.5 w-3.5 -translate-x-1/2 rounded-full md:static md:mx-auto md:mb-5 md:block md:translate-x-0 ${
+            className={`status-node absolute top-0.5 left-0 inline-block h-3.5 w-3.5 -translate-x-1/2 rounded-full md:static md:mx-auto md:mb-5 md:block md:translate-x-0 ${
               nodeClass[item.status] ?? "bg-mist"
             }`}
             aria-hidden="true"

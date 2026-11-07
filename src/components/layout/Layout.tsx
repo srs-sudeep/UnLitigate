@@ -32,9 +32,9 @@ export function Layout() {
   }, [pathname, hash, reduced, transitioning]);
 
   return (
-    <div className="min-h-dvh bg-cream text-ink">
+    <div className="min-h-dvh bg-cream text-ink pb-[calc(5.5rem+env(safe-area-inset-bottom))] md:pb-0">
       <Nav />
-      <main className="pb-28 md:pb-0">
+      <main>
         <ErrorBoundary>
           <Outlet />
         </ErrorBoundary>

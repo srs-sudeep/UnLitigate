@@ -1,7 +1,8 @@
 import site from "../data/site.json";
+import { hasPublishedForm } from "./contact";
 
 export function resolveHref(href: string): string {
-  if (href === "form") return site.form.url;
+  if (href === "form") return hasPublishedForm() ? site.form.url : "/get-in-touch";
   return href;
 }
 

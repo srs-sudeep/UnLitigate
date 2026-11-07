@@ -91,6 +91,34 @@
     "heading": "When mediation may not suit",
     "body": "If the other side will not take part, or where there is violence, fraud or a criminal matter, mediation is usually not the right first step. Court, or another formal process, may be."
   },
+  "mediatorMatters": {
+    "eyebrow": "Mediation Explained",
+    "heading": "Why your mediator matters",
+    "body": "In mediation, nobody decides for you. A mediator helps you both talk, listen and find your own way forward. That is why who sits in the middle matters.",
+    "cards": [
+      {
+        "icon": "neutral",
+        "heading": "Neutral",
+        "body": "A mediator does not take sides or decide who is right. They keep the conversation fair, so both of you are heard."
+      },
+      {
+        "icon": "time",
+        "heading": "Saves time and money",
+        "body": "A skilled mediator helps you settle in weeks, not years, and usually for far less than a long court case."
+      },
+      {
+        "icon": "decision",
+        "heading": "Your decision",
+        "body": "A mediator cannot force a settlement. Nothing is agreed unless both of you say yes."
+      }
+    ],
+    "bullets": [
+      { "emphasis": "Voluntary", "text": "for both sides", "tone": "clay" },
+      { "text": "The outcome is yours to decide", "tone": "teal" },
+      { "text": "Either side can step away", "tone": "teal" }
+    ],
+    "footnote": "Mediation helps you talk; it does not promise a particular result."
+  },
   "faq": {
     "heading": "Questions people ask",
     "items": [
@@ -103,8 +131,12 @@
         "answer": "Then mediation does not go ahead. It is voluntary. Refusing does not decide who is right. It just means this path is closed for now."
       },
       {
-        "question": "Who is the mediator?",
-        "answer": "In our pilot, trained students work under accredited supervision. They guide the conversation. They do not take sides, and they do not impose an outcome."
+        "question": "Who will be my mediator?",
+        "answer": "In our pilot, trained students work under accredited supervision. They guide the conversation — they do not take sides or impose an outcome.",
+        "link": {
+          "label": "Why your mediator matters →",
+          "href": "/mediation-explained#why-mediator"
+        }
       },
       {
         "question": "Is it confidential?",

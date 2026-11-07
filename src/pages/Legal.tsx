@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import legal from "../data/legal.json";
 import { Seo } from "../components/layout/Seo";
 import { PageHero } from "../components/ui/PageHero";
+import { Reveal } from "../components/ui/Reveal";
 import { Section } from "../components/ui/Section";
 
 type Kind = "disclaimer" | "privacy";
@@ -22,12 +23,14 @@ export function Legal({ kind }: { kind: Kind }) {
       <Section className="pb-20">
         <div className="mx-auto max-w-3xl space-y-10">
           {page.sections.map((section) => (
-            <article key={section.heading}>
-              <h2 className="font-serif text-2xl text-ink sm:text-3xl">
-                {section.heading}
-              </h2>
-              <p className="mt-3 leading-relaxed text-ink/75">{section.body}</p>
-            </article>
+            <Reveal key={section.heading}>
+              <article>
+                <h2 className="font-serif text-2xl text-ink sm:text-3xl">
+                  {section.heading}
+                </h2>
+                <p className="mt-3 leading-relaxed text-ink/75">{section.body}</p>
+              </article>
+            </Reveal>
           ))}
           <p className="pt-4 text-sm text-ink/55">
             <Link to="/get-in-touch" className="font-semibold text-teal hover:underline">

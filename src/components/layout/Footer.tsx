@@ -1,10 +1,13 @@
 import { Link } from "react-router-dom";
 import site from "../../data/site.json";
+import { contactEmail, publishedSocialLinks } from "../../lib/contact";
 import { BrandMark } from "../illustrations/BrandMark";
 
 export function Footer() {
+  const socials = publishedSocialLinks();
+
   return (
-    <footer className="bg-ink text-cream">
+    <footer id="site-footer" className="bg-ink text-cream">
       <div className="mx-auto flex max-w-6xl flex-col gap-10 px-5 py-12 sm:px-8 md:flex-row md:items-start md:justify-between">
         <div className="max-w-lg">
           <BrandMark tone="cream" size="footer" />
@@ -22,30 +25,35 @@ export function Footer() {
               </Link>
             ))}
           </div>
+          <div className="mt-4 flex flex-wrap gap-x-5 gap-y-2 text-sm">
+            {site.teamLinks.map((link) => (
+              <a
+                key={link.id}
+                href={link.href}
+                target="_blank"
+                rel="noreferrer noopener"
+                className="text-cream/85 underline-offset-4 hover:text-cream hover:underline"
+              >
+                {link.label}
+              </a>
+            ))}
+          </div>
         </div>
         <div className="flex flex-col items-start gap-3 text-sm md:items-end">
           <div className="flex flex-wrap gap-x-4 gap-y-2">
-            <a
-              href={site.social.instagram.href}
-              className="text-cream/85 hover:text-cream"
-              target="_blank"
-              rel="noreferrer noopener"
-            >
-              {site.social.instagram.label}
-            </a>
-            <a
-              href={site.social.linkedin.href}
-              className="text-cream/85 hover:text-cream"
-              target="_blank"
-              rel="noreferrer noopener"
-            >
-              {site.social.linkedin.label}
-            </a>
-            <a
-              href={site.social.email.href}
-              className="text-cream/85 hover:text-cream"
-            >
-              {site.social.email.label}
+            {socials.map((item) => (
+              <a
+                key={item.label}
+                href={item.href}
+                className="text-cream/85 hover:text-cream"
+                target="_blank"
+                rel="noreferrer noopener"
+              >
+                {item.label}
+              </a>
+            ))}
+            <a href={contactEmail.href} className="text-cream/85 hover:text-cream">
+              {contactEmail.label}
             </a>
           </div>
           <svg

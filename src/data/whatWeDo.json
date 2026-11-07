@@ -29,7 +29,7 @@
         "status": "Being built",
         "heading": "Referral partnerships",
         "body": "Working toward links with university mediation centres, so people can be referred to a trusted room.",
-        "detail": "Centres and universities — not a claim that we operate everywhere."
+        "detail": "We work with local centres and universities, starting in our pilot cities."
       }
     ]
   },
@@ -60,25 +60,29 @@
     ]
   },
   "map": {
+    "eyebrow": "What UnLitigate Does",
     "heading": "Where we are",
-    "body": "Soft marks stand for people who may be about to give up on a dispute — not real cases, and not a count. The bright pins are our pilot cities only.",
+    "body": "Two pilot cities. The soft marks stand for people who may be about to give up on a dispute: not real cases, and not a count.",
     "caption": "Illustrative. Not data about real people or places. Pilot in Bhubaneswar and Pune only.",
+    "hint": "Tap a pin, or a city card, to switch.",
     "pins": [
-      {
-        "id": "pune",
-        "label": "Pune",
-        "lat": 18.52,
-        "lon": 73.86,
-        "lead": "Madhur",
-        "status": "Pilot starting"
-      },
       {
         "id": "bhubaneswar",
         "label": "Bhubaneswar",
         "lat": 20.3,
         "lon": 85.83,
         "lead": "Anushka Jena",
-        "status": "Pilot starting"
+        "role": "Co-founder",
+        "status": "Pilot starting soon"
+      },
+      {
+        "id": "pune",
+        "label": "Pune",
+        "lat": 18.52,
+        "lon": 73.86,
+        "lead": "Madhur",
+        "role": "Co-founder",
+        "status": "Pilot starting soon"
       }
     ]
   },
@@ -117,19 +121,25 @@
     ],
     "take": {
       "heading": "We take",
-      "body": "Suitable business, family and property disputes — where both sides can sit down, and where talking can still help."
+      "items": [
+        "Voluntary for both sides",
+        "Supervised student mediators",
+        "Pilot cities only for now",
+        "Settlements written and signed",
+        "Educational information, not legal advice"
+      ]
     },
     "leave": {
       "heading": "We don't take",
-      "body": "Violence, fraud, or criminal matters. Those need a different door."
-    },
-    "checklist": [
-      "Voluntary for both sides",
-      "Supervised student mediators",
-      "Pilot cities only for now",
-      "Settlements written and signed",
-      "Educational information — not legal advice"
-    ]
+      "items": [
+        "Criminal matters",
+        "Cases involving abuse or threats, where the two sides cannot talk safely or equally",
+        "Disputes where one side does not want to take part",
+        "Anything that needs a court's ruling, not an agreement between the two sides",
+        "Legal advice, representation or guaranteed outcomes"
+      ],
+      "note": "If your matter isn't suitable, we'll say so honestly."
+    }
   },
   "whyNow": {
     "heading": "Why now",

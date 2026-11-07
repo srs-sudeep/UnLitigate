@@ -51,9 +51,15 @@ export function PathsTable({
               <div className="border-t border-ink/8 px-4 py-4 text-[15px] leading-relaxed text-ink/75 sm:border-t-0 sm:border-r sm:border-ink/10">
                 {row.court}
               </div>
-              <div className="paths-mediation border-t border-ink/8 bg-mist/50 px-4 py-4 text-[15px] leading-relaxed text-teal sm:border-t-0">
+              <motion.div
+                initial={reduced ? false : { backgroundColor: "rgba(213,228,223,0.35)" }}
+                whileInView={{ backgroundColor: "rgba(213,228,223,0.72)" }}
+                viewport={{ once: true, amount: 0.6 }}
+                transition={{ delay: index * 0.06 + 0.15, duration: 0.5 }}
+                className="paths-mediation border-t border-ink/8 px-4 py-4 text-[15px] leading-relaxed text-teal sm:border-t-0"
+              >
                 {row.mediation}
-              </div>
+              </motion.div>
             </div>
           </motion.div>
         ))}

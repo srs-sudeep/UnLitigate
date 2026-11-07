@@ -1,3 +1,6 @@
+import { motion } from "motion/react";
+import { usePrefersReducedMotion } from "../../hooks/usePrefersReducedMotion";
+
 type PageHeroProps = {
   eyebrow: string;
   heading: string;
@@ -5,8 +8,15 @@ type PageHeroProps = {
 };
 
 export function PageHero({ eyebrow, heading, body }: PageHeroProps) {
+  const reduced = usePrefersReducedMotion();
+
   return (
-    <header className="max-w-3xl pt-10 pb-12 sm:pt-16 sm:pb-16">
+    <motion.header
+      className="max-w-3xl pt-10 pb-12 sm:pt-16 sm:pb-16"
+      initial={reduced ? false : { opacity: 0, y: 14 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
+    >
       <p className="text-xs font-semibold uppercase tracking-[0.22em] text-teal">
         {eyebrow}
       </p>
@@ -14,6 +24,6 @@ export function PageHero({ eyebrow, heading, body }: PageHeroProps) {
         {heading}
       </h1>
       <p className="mt-5 max-w-2xl text-lg leading-relaxed text-ink/80">{body}</p>
-    </header>
+    </motion.header>
   );
 }

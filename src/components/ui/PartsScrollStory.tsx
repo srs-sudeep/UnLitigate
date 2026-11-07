@@ -142,8 +142,8 @@ export function PartsScrollStory({ items }: { items: Part[] }) {
             ref={(node) => {
               refs.current[index] = node;
             }}
-            className={`react-card group rounded-[2rem] border border-ink/8 bg-cream p-6 sm:p-8 ${
-              active === index ? "border-teal/25 shadow-[0_14px_36px_rgba(31,42,46,0.08)]" : ""
+            className={`react-card hover-card group rounded-[2rem] bg-cream p-6 sm:p-8 ${
+              active === index ? "border-clay shadow-[0_14px_36px_rgba(31,42,46,0.08)]" : ""
             }`}
           >
             <div className="mb-5 lg:hidden">
@@ -162,7 +162,11 @@ export function PartsScrollStory({ items }: { items: Part[] }) {
             </p>
             <h3 className="mt-4 font-serif text-3xl text-ink">{part.heading}</h3>
             <p className="mt-3 leading-relaxed text-ink/75">{part.body}</p>
-            <p className="react-card-detail mt-4 text-sm font-medium text-teal/90 opacity-0 transition-opacity duration-300 group-hover:opacity-100 group-focus-within:opacity-100 max-lg:opacity-100">
+            <p
+              className={`react-card-detail mt-4 text-sm font-medium text-teal/90 transition-opacity duration-300 max-lg:opacity-100 ${
+                active === index ? "opacity-100" : "lg:opacity-0"
+              }`}
+            >
               {part.detail}
             </p>
           </article>

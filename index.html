@@ -29,84 +29,69 @@
         visibility: hidden;
         pointer-events: none;
       }
-      .preloader-stage {
+      .preloader-mark {
         display: flex;
         flex-direction: column;
         align-items: center;
-        gap: 1.75rem;
-        width: min(22rem, 86vw);
+        gap: 2.25rem;
       }
-      .preloader-bench {
-        width: 100%;
-        height: 4.5rem;
-        overflow: visible;
+      .preloader-mark img {
+        width: 9rem;
+        height: 9rem;
       }
-      .preloader-bench .rail {
+      .preloader-thread {
+        width: min(22rem, 78vw);
+        height: 2rem;
+      }
+      .preloader-thread line {
         stroke: #1f2a2e;
-        stroke-width: 1.6;
+        stroke-width: 2.4;
         stroke-linecap: round;
-        opacity: 0.55;
-        transform-origin: 160px 40px;
-        animation: bench-shorten 1.35s cubic-bezier(0.22, 1, 0.36, 1) forwards 0.15s;
+        opacity: 0.7;
+        stroke-dasharray: 280;
+        stroke-dashoffset: 280;
+        animation: preloader-draw 1s ease forwards 0.12s;
       }
-      .preloader-bench .figure {
+      .preloader-thread .end {
+        fill: #f7f2ea;
+        stroke: #1f2a2e;
+        stroke-width: 1.8;
+      }
+      .preloader-thread .bead {
         fill: #c9683f;
-        animation: figure-meet 1.35s cubic-bezier(0.22, 1, 0.36, 1) forwards 0.15s;
-      }
-      .preloader-bench .figure.left { --from: 28px; --to: 132px; }
-      .preloader-bench .figure.right { --from: 292px; --to: 188px; }
-      .preloader-logo {
-        width: 4rem;
-        height: 4rem;
         opacity: 0;
-        transform: scale(0.86);
-        animation: logo-in 0.55s ease forwards 1.35s;
+        animation: preloader-pop 0.4s ease forwards;
       }
-      .preloader-name {
-        margin: 0;
-        font-family: "Fraunces", ui-serif, Georgia, serif;
-        font-size: 1.35rem;
-        color: #1f2a2e;
-        letter-spacing: -0.02em;
-        opacity: 0;
-        animation: logo-in 0.55s ease forwards 1.5s;
+      .preloader-thread .bead.b1 { animation-delay: 0.45s; }
+      .preloader-thread .bead.b2 { animation-delay: 0.62s; }
+      @keyframes preloader-draw {
+        to { stroke-dashoffset: 0; }
       }
-      @keyframes bench-shorten {
-        from { transform: scaleX(1); }
-        to { transform: scaleX(0.34); }
-      }
-      @keyframes figure-meet {
-        from { transform: translateX(var(--from)); }
-        to { transform: translateX(var(--to)); }
-      }
-      @keyframes logo-in {
+      @keyframes preloader-pop {
+        from { opacity: 0; transform: scale(0.4); }
         to { opacity: 1; transform: scale(1); }
       }
       @media (prefers-reduced-motion: reduce) {
-        .preloader-bench .rail,
-        .preloader-bench .figure,
-        .preloader-logo,
-        .preloader-name {
+        .preloader-thread line,
+        .preloader-thread .bead {
           animation: none;
           opacity: 1;
-          transform: none;
+          stroke-dashoffset: 0;
         }
-        .preloader-bench .rail { transform: scaleX(0.34); }
-        .preloader-bench .figure.left { transform: translateX(132px); }
-        .preloader-bench .figure.right { transform: translateX(188px); }
       }
     </style>
   </head>
   <body>
     <div id="preloader" role="status" aria-label="Loading UnLitigate">
-      <div class="preloader-stage">
-        <svg class="preloader-bench" viewBox="0 0 320 72" aria-hidden="true">
-          <line class="rail" x1="24" y1="40" x2="296" y2="40" />
-          <circle class="figure left" cx="0" cy="40" r="7" />
-          <circle class="figure right" cx="0" cy="40" r="7" />
+      <div class="preloader-mark">
+        <img src="/assets/logos/icon-teal-clay.png" alt="" width="144" height="144" />
+        <svg class="preloader-thread" viewBox="0 0 300 28" aria-hidden="true">
+          <line x1="14" y1="14" x2="286" y2="14" />
+          <circle class="end" cx="14" cy="14" r="6.5" />
+          <circle class="bead b1" cx="105" cy="14" r="5.5" />
+          <circle class="bead b2" cx="195" cy="14" r="5.5" />
+          <circle class="end" cx="286" cy="14" r="6.5" />
         </svg>
-        <img class="preloader-logo" src="/assets/logos/icon-teal-clay.png" alt="" width="64" height="64" />
-        <p class="preloader-name">UnLitigate</p>
       </div>
     </div>
     <div id="root"></div>

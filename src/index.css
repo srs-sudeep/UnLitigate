@@ -191,11 +191,19 @@ html:has(#preloader:not(.is-done)) {
 
   .map-pin {
     cursor: pointer;
+    outline: none;
   }
 
+  .map-pin:focus,
+  .map-pin:focus-visible {
+    outline: none;
+  }
+
+  /* Pins are SVG-translated to their point; local origin is the center */
   .map-pin .pin-core,
   .map-pin .pin-ring,
-  .map-pin .pin-halo {
+  .map-pin .pin-halo,
+  .map-pin .pin-pulse {
     transform-box: fill-box;
     transform-origin: center;
     transition:
@@ -203,42 +211,43 @@ html:has(#preloader:not(.is-done)) {
       opacity 0.35s ease;
   }
 
-  .map-pin:hover .pin-core {
-    transform: scale(1.22);
+  .map-pin:hover .pin-core,
+  .map-pin:focus-visible .pin-core {
+    transform: scale(1.18);
   }
 
-  .map-pin:hover .pin-ring {
-    transform: scale(1.45);
+  .map-pin:hover .pin-halo,
+  .map-pin:focus-visible .pin-halo {
+    opacity: 0.28;
+    transform: scale(1.12);
   }
+}
 
-  .map-pin:hover .pin-halo {
-    opacity: 0.18;
-    transform: scale(1.15);
-  }
-
-  .map-pin:hover .pin-label {
-    fill: #1e5f5c;
-    font-weight: 600;
-  }
+/* Kill browser’s square focus box on SVG pin hit targets */
+.map-pin,
+.map-pin:focus,
+.map-pin:focus-visible {
+  outline: none !important;
+  box-shadow: none !important;
 }
 
 @keyframes pin-pulse {
   0% {
     transform: scale(1);
-    opacity: 0.7;
+    opacity: 0.85;
   }
   70% {
-    transform: scale(1.55);
+    transform: scale(1.7);
     opacity: 0;
   }
   100% {
-    transform: scale(1.55);
+    transform: scale(1.7);
     opacity: 0;
   }
 }
 
 @media (prefers-reduced-motion: no-preference) {
-  .pin-ring {
+  .map-pin .pin-pulse {
     transform-box: fill-box;
     transform-origin: center;
     animation: pin-pulse 2.6s ease-out infinite;
@@ -271,6 +280,41 @@ html:has(#preloader:not(.is-done)) {
 
   .paths-row:hover .paths-mediation {
     background: rgba(213, 228, 223, 0.95);
+  }
+}
+
+.hover-card {
+  border: 1.5px solid rgba(31, 42, 46, 0.08);
+}
+
+@media (hover: hover) and (prefers-reduced-motion: no-preference) {
+  .hover-card {
+    transition:
+      transform 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+      border-color 0.4s ease,
+      box-shadow 0.4s ease;
+  }
+
+  .hover-card:hover {
+    transform: translateY(-4px);
+    border-color: #c9683f;
+    box-shadow: 0 14px 32px rgba(31, 42, 46, 0.1);
+  }
+
+  .hover-card .hover-card-icon {
+    transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .hover-card:hover .hover-card-icon {
+    transform: translateY(-3px) scale(1.06);
+  }
+
+  .hover-card .meet-link {
+    transition: gap 0.3s ease;
+  }
+
+  .hover-card:hover .meet-link {
+    gap: 0.5rem;
   }
 }
 

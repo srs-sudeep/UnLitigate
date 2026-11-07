@@ -40,24 +40,50 @@
     }
   },
   "form": {
-    "url": "https://forms.gle/REPLACE_WITH_REAL_FORM",
+    "url": "",
     "newTab": true,
     "privacyNote": "Please don't share any government-issued ID or bank details."
   },
+  "email": {
+    "label": "hello@unlitigate.org",
+    "href": "mailto:hello@unlitigate.org",
+    "note": "Tentative until domain access is sorted. Change only here."
+  },
   "social": {
-    "email": {
-      "label": "hello@unlitigate.org",
-      "href": "mailto:hello@unlitigate.org"
-    },
     "instagram": {
       "label": "Instagram",
-      "href": "https://www.instagram.com/unlitigate/"
+      "href": "https://www.instagram.com/unlitigate_org/?utm_source=ig_web_button_share_sheet"
+    },
+    "twitter": {
+      "label": "Twitter / X",
+      "href": ""
     },
     "linkedin": {
       "label": "LinkedIn",
-      "href": "https://www.linkedin.com/company/unlitigate/"
+      "href": ""
+    },
+    "facebook": {
+      "label": "Facebook",
+      "href": ""
     }
   },
+  "teamLinks": [
+    {
+      "id": "anushka",
+      "label": "Anushka — bio & headshot",
+      "href": "https://drive.google.com/drive/folders/1l2TJw4GL2nuyRo69ZWUnOO88WJO7213L?usp=sharing"
+    },
+    {
+      "id": "madhur",
+      "label": "Madhur — bio & headshot",
+      "href": "https://drive.google.com/drive/folders/1ft2uNfQVa5V8sBwBhk0oqN5adTST9_Np?usp=sharing"
+    },
+    {
+      "id": "prakhar",
+      "label": "Prakhar — bio & headshot",
+      "href": "https://drive.google.com/drive/folders/1ONUauHqdmrDltKm3UKQNlCMS3Nhd5jEH"
+    }
+  ],
   "footer": {
     "disclaimer": "UnLitigate shares general information about mediation. It is not legal advice. We use simple analytics to understand how visitors find this site.",
     "links": [

@@ -1,5 +1,6 @@
 import { motion } from "motion/react";
 import { usePrefersReducedMotion } from "../../hooks/usePrefersReducedMotion";
+import { Reveal } from "./Reveal";
 
 type Step = {
   id: string;
@@ -20,8 +21,10 @@ export function CaseFlow({
 
   return (
     <div>
-      <h2 className="font-serif text-3xl text-ink sm:text-4xl">{heading}</h2>
-      <p className="mt-3 max-w-2xl text-ink/70">{subheading}</p>
+      <Reveal>
+        <h2 className="font-serif text-3xl text-ink sm:text-4xl">{heading}</h2>
+        <p className="mt-3 max-w-2xl text-ink/70">{subheading}</p>
+      </Reveal>
       <ol className="mt-10 grid gap-4 md:grid-cols-4">
         {items.map((step, index) => (
           <motion.li
@@ -38,12 +41,16 @@ export function CaseFlow({
             <h3 className="mt-2 font-serif text-2xl text-ink">{step.heading}</h3>
             <p className="mt-2 text-sm leading-relaxed text-ink/70">{step.body}</p>
             {index < items.length - 1 ? (
-              <span
+              <motion.span
                 className="pointer-events-none absolute top-1/2 -right-3 hidden text-teal md:block"
                 aria-hidden="true"
+                initial={reduced ? false : { opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                viewport={{ once: true }}
+                transition={{ delay: index * 0.08 + 0.25, duration: 0.35 }}
               >
                 →
-              </span>
+              </motion.span>
             ) : null}
           </motion.li>
         ))}

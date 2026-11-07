@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useMemo, useState } from "react";
+import { motion } from "motion/react";
 import { useLocation, useNavigate } from "react-router-dom";
 import about from "../data/about.json";
 import { SflLockup } from "../components/illustrations/SflLockup";
@@ -6,13 +7,16 @@ import { Seo } from "../components/layout/Seo";
 import { CtaBand } from "../components/ui/CtaBand";
 import { PageHero } from "../components/ui/PageHero";
 import { PersonPanel, type Person } from "../components/ui/PersonPanel";
+import { Reveal } from "../components/ui/Reveal";
 import { Section } from "../components/ui/Section";
+import { usePrefersReducedMotion } from "../hooks/usePrefersReducedMotion";
 
 export function About() {
   const { hash } = useLocation();
   const navigate = useNavigate();
   const people = about.team.items as Person[];
   const [activeId, setActiveId] = useState<string | null>(null);
+  const reduced = usePrefersReducedMotion();
 
   useEffect(() => {
     const id = hash.replace(/^#/, "");
@@ -51,15 +55,21 @@ export function About() {
       </Section>
 
       <Section className="pb-8">
-        <h2 className="font-serif text-3xl sm:text-4xl">{about.team.heading}</h2>
+        <Reveal>
+          <h2 className="font-serif text-3xl sm:text-4xl">{about.team.heading}</h2>
+        </Reveal>
         <div className="mt-8 grid gap-5 md:grid-cols-3">
-          {people.map((person) => (
-            <button
+          {people.map((person, index) => (
+            <motion.button
               key={person.id}
               type="button"
               id={person.id}
+              initial={reduced ? false : { opacity: 0, y: 18 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.35 }}
+              transition={{ delay: index * 0.08, duration: 0.45 }}
               onClick={() => openPerson(person.id)}
-              className="lift group scroll-mt-28 overflow-hidden rounded-3xl border border-ink/8 bg-cream text-left"
+              className="hover-card group scroll-mt-28 overflow-hidden rounded-3xl bg-cream text-left"
             >
               <img
                 src={person.image.src}
@@ -74,11 +84,11 @@ export function About() {
                 <p className="mt-3 text-sm leading-relaxed text-ink/75">
                   {person.shortBio}
                 </p>
-                <span className="mt-4 inline-block text-sm font-semibold text-teal">
+                <span className="meet-link mt-4 inline-flex items-center gap-1 text-sm font-semibold text-teal">
                   Read their story →
                 </span>
               </div>
-            </button>
+            </motion.button>
           ))}
         </div>
       </Section>
@@ -100,31 +110,42 @@ export function About() {
             <circle cx="210" cy="12" r="5" fill="#F7F2EA" />
           </svg>
         </div>
-        <h2 className="mt-8 text-center font-serif text-3xl text-cream sm:text-4xl">
-          {about.values.heading}
-        </h2>
+        <Reveal>
+          <h2 className="mt-8 text-center font-serif text-3xl text-cream sm:text-4xl">
+            {about.values.heading}
+          </h2>
+        </Reveal>
         <div className="mt-12 grid gap-10 md:grid-cols-3 md:gap-8">
           {about.values.items.map((value, index) => (
-            <article key={value.heading} className="text-center md:text-left">
+            <motion.article
+              key={value.heading}
+              className="text-center md:text-left"
+              initial={reduced ? false : { opacity: 0, y: 16 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.4 }}
+              transition={{ delay: index * 0.1, duration: 0.45 }}
+            >
               <p className="font-serif text-4xl text-cream/40 sm:text-5xl">
                 {String(index + 1).padStart(2, "0")}
               </p>
               <h3 className="mt-2 font-serif text-3xl text-cream">{value.heading}</h3>
               <p className="mt-3 leading-relaxed text-cream/75">{value.body}</p>
-            </article>
+            </motion.article>
           ))}
         </div>
       </Section>
 
       <Section className="py-12">
-        <h2 className="font-serif text-3xl">{about.supporters.heading}</h2>
-        <p className="mt-3 max-w-2xl text-ink/75">{about.supporters.body}</p>
-        <div className="mt-5">
-          <SflLockup
-            label={about.supporters.sfl.label}
-            href={about.supporters.sfl.href}
-          />
-        </div>
+        <Reveal>
+          <h2 className="font-serif text-3xl">{about.supporters.heading}</h2>
+          <p className="mt-3 max-w-2xl text-ink/75">{about.supporters.body}</p>
+          <div className="mt-5">
+            <SflLockup
+              label={about.supporters.sfl.label}
+              href={about.supporters.sfl.href}
+            />
+          </div>
+        </Reveal>
       </Section>
 
       <CtaBand

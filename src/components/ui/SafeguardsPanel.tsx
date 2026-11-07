@@ -1,5 +1,7 @@
-import { useEffect, useRef, useState } from "react";
+import { useState } from "react";
+import { motion } from "motion/react";
 import { usePrefersReducedMotion } from "../../hooks/usePrefersReducedMotion";
+import { Reveal } from "./Reveal";
 
 type Card = {
   id: string;
@@ -13,9 +15,8 @@ type SafeguardsPanelProps = {
   heading: string;
   subheading: string;
   cards: Card[];
-  take: { heading: string; body: string };
-  leave: { heading: string; body: string };
-  checklist: string[];
+  take: { heading: string; items: string[] };
+  leave: { heading: string; items: string[]; note: string };
 };
 
 function Icon({ name }: { name: string }) {
@@ -62,119 +63,115 @@ export function SafeguardsPanel({
   cards,
   take,
   leave,
-  checklist,
 }: SafeguardsPanelProps) {
-  const reduced = usePrefersReducedMotion();
   const [openId, setOpenId] = useState<string | null>(null);
-  const [mode, setMode] = useState<"take" | "leave">("take");
-  const [checked, setChecked] = useState(0);
-  const listRef = useRef<HTMLUListElement>(null);
-
-  useEffect(() => {
-    if (reduced) {
-      setChecked(checklist.length);
-      return;
-    }
-    const el = listRef.current;
-    if (!el) return;
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (!entry?.isIntersecting) return;
-        let i = 0;
-        const tick = window.setInterval(() => {
-          i += 1;
-          setChecked(i);
-          if (i >= checklist.length) window.clearInterval(tick);
-        }, 220);
-        observer.disconnect();
-      },
-      { threshold: 0.4 },
-    );
-    observer.observe(el);
-    return () => observer.disconnect();
-  }, [checklist.length, reduced]);
-
-  const active = mode === "take" ? take : leave;
+  const reduced = usePrefersReducedMotion();
 
   return (
     <div id="safeguards" className="scroll-mt-28">
       <div className="grid gap-10 lg:grid-cols-[0.85fr_1.15fr] lg:gap-16">
-        <div>
+        <Reveal>
           <h2 className="font-serif text-3xl sm:text-4xl">{heading}</h2>
           <p className="mt-4 max-w-md text-lg leading-relaxed text-ink/70">
             {subheading}
           </p>
-        </div>
+        </Reveal>
         <div>
           <div className="grid gap-3 sm:grid-cols-2">
-            {cards.map((card) => {
+            {cards.map((card, index) => {
               const open = openId === card.id;
               return (
-                <button
+                <motion.button
                   key={card.id}
                   type="button"
+                  initial={reduced ? false : { opacity: 0, y: 14 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, amount: 0.4 }}
+                  transition={{ delay: index * 0.06, duration: 0.4 }}
                   onClick={() => setOpenId(open ? null : card.id)}
-                  className={`rounded-3xl border border-ink/8 bg-cream p-5 text-left transition-shadow ${
-                    open ? "shadow-[0_12px_28px_rgba(31,42,46,0.1)]" : "hover:shadow-md"
+                  aria-expanded={open}
+                  aria-controls={`safeguard-detail-${card.id}`}
+                  className={`hover-card rounded-3xl bg-cream p-5 text-left ${
+                    open ? "border-clay shadow-[0_12px_28px_rgba(31,42,46,0.1)]" : ""
                   }`}
                 >
                   <Icon name={card.icon} />
                   <h3 className="mt-3 font-serif text-xl text-ink">{card.heading}</h3>
                   <p className="mt-2 text-sm leading-relaxed text-ink/70">{card.summary}</p>
-                  <p
-                    className={`mt-3 text-sm leading-relaxed text-ink/75 transition-all ${
-                      open ? "max-h-40 opacity-100" : "max-h-0 overflow-hidden opacity-0"
-                    }`}
-                  >
-                    {card.detail}
-                  </p>
-                </button>
+                  {open ? (
+                    <p
+                      id={`safeguard-detail-${card.id}`}
+                      className="mt-3 text-sm leading-relaxed text-ink/75"
+                    >
+                      {card.detail}
+                    </p>
+                  ) : null}
+                </motion.button>
               );
             })}
           </div>
 
-          <div className="mt-6 rounded-3xl border border-ink/8 bg-mist/40 p-5 sm:p-6">
-            <div className="inline-flex rounded-full border border-ink/10 bg-cream p-1">
-              <button
-                type="button"
-                onClick={() => setMode("take")}
-                className={`rounded-full px-4 py-1.5 text-sm font-semibold ${
-                  mode === "take" ? "bg-teal text-cream" : "text-ink/70"
-                }`}
-              >
-                We take
-              </button>
-              <button
-                type="button"
-                onClick={() => setMode("leave")}
-                className={`rounded-full px-4 py-1.5 text-sm font-semibold ${
-                  mode === "leave" ? "bg-clay text-cream" : "text-ink/70"
-                }`}
-              >
-                We don't take
-              </button>
-            </div>
-            <h3 className="mt-4 font-serif text-2xl text-ink">{active.heading}</h3>
-            <p className="mt-2 leading-relaxed text-ink/75">{active.body}</p>
+          <div className="mt-8 grid gap-5 md:grid-cols-2">
+            <motion.div
+              initial={reduced ? false : { opacity: 0, y: 12 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.4 }}
+              transition={{ duration: 0.45 }}
+              className="rounded-3xl border border-ink/8 bg-mist/35 p-5 sm:p-6"
+            >
+              <h3 className="font-serif text-2xl text-ink">{take.heading}</h3>
+              <ul className="mt-4 space-y-3">
+                {take.items.map((item, i) => (
+                  <motion.li
+                    key={item}
+                    initial={reduced ? false : { opacity: 0, x: -6 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: i * 0.06, duration: 0.3 }}
+                    className="flex items-start gap-3 text-sm text-ink/80"
+                  >
+                    <span
+                      className="mt-0.5 inline-flex h-5 w-5 shrink-0 items-center justify-center rounded-full border border-teal bg-teal text-[11px] text-cream"
+                      aria-hidden="true"
+                    >
+                      ✓
+                    </span>
+                    <span>{item}</span>
+                  </motion.li>
+                ))}
+              </ul>
+            </motion.div>
+            <motion.div
+              initial={reduced ? false : { opacity: 0, y: 12 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.4 }}
+              transition={{ delay: 0.1, duration: 0.45 }}
+              className="rounded-3xl border border-ink/8 bg-cream p-5 sm:p-6"
+            >
+              <h3 className="font-serif text-2xl text-ink">{leave.heading}</h3>
+              <ul className="mt-4 space-y-3">
+                {leave.items.map((item, i) => (
+                  <motion.li
+                    key={item}
+                    initial={reduced ? false : { opacity: 0, x: -6 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: i * 0.06, duration: 0.3 }}
+                    className="flex items-start gap-3 text-sm text-ink/80"
+                  >
+                    <span
+                      className="mt-0.5 inline-flex h-5 w-5 shrink-0 items-center justify-center rounded-full border border-clay/40 text-[12px] font-semibold text-clay"
+                      aria-hidden="true"
+                    >
+                      ✕
+                    </span>
+                    <span>{item}</span>
+                  </motion.li>
+                ))}
+              </ul>
+              <p className="mt-5 text-sm text-ink/60">{leave.note}</p>
+            </motion.div>
           </div>
-
-          <ul ref={listRef} className="mt-6 space-y-3">
-            {checklist.map((item, index) => (
-              <li key={item} className="flex items-start gap-3 text-sm text-ink/80">
-                <span
-                  className={`mt-0.5 inline-flex h-5 w-5 items-center justify-center rounded-full border ${
-                    index < checked
-                      ? "border-teal bg-teal text-cream"
-                      : "border-ink/20 text-transparent"
-                  }`}
-                  aria-hidden="true"
-                >
-                  ✓
-                </span>
-                <span>{item}</span>
-              </li>
-            ))}
-          </ul>
         </div>
       </div>
     </div>

@@ -11,23 +11,26 @@ type Pin = {
   lat: number;
   lon: number;
   lead?: string;
+  role?: string;
   status?: string;
 };
 
 type IndiaMapProps = {
+  eyebrow?: string;
   heading: string;
   body: string;
   caption: string;
+  hint?: string;
   pins: Pin[];
   reducedMotion: boolean;
 };
 
-const LON_MIN = 60;
-const LON_MAX = 100;
-const LAT_MIN = 2;
-const LAT_MAX = 40;
-const WIDTH = 260;
-const HEIGHT = 250;
+const LON_MIN = 67.5;
+const LON_MAX = 97.7;
+const LAT_MIN = 6.7;
+const LAT_MAX = 37.4;
+const WIDTH = 220;
+const HEIGHT = 224;
 
 function project(lon: number, lat: number): [number, number] {
   const x = ((lon - LON_MIN) / (LON_MAX - LON_MIN)) * WIDTH;
@@ -53,8 +56,9 @@ const OUTLINE_PATH =
     " ",
   ) + " Z";
 
-function buildDots(insideOnly: boolean, step: number, opacityBase = 0.38) {
-  const dots: Array<[number, number, number]> = [];
+function buildDots() {
+  const dots: Array<[number, number]> = [];
+  const step = 3.2;
   const rows = Math.ceil(HEIGHT / (step * 0.86));
   const cols = Math.ceil(WIDTH / step);
 
@@ -63,198 +67,260 @@ function buildDots(insideOnly: boolean, step: number, opacityBase = 0.38) {
     for (let col = 0; col < cols; col += 1) {
       const x = col * step + offset;
       const y = row * step * 0.86;
-      const inside = pointInPoly(x, y, OUTLINE_SVG);
-      if (insideOnly && !inside) continue;
-      if (!insideOnly && inside) continue;
-      if (x < 4 || y < 4 || x > WIDTH - 4 || y > HEIGHT - 4) continue;
-      dots.push([x, y, inside ? opacityBase : opacityBase * 0.35]);
+      if (pointInPoly(x, y, OUTLINE_SVG)) dots.push([x, y]);
     }
   }
   return dots;
 }
 
-const INDIA_DOTS = buildDots(true, 3.2, 0.5);
-const WORLD_DOTS = buildDots(false, 5.2, 0.14);
+const DOTS = buildDots();
+
+/** Soft illustrative marks — not real cases. */
+const SOFT_MARKS: Array<[number, number]> = [
+  [77.2, 28.6],
+  [72.8, 19.1],
+  [88.4, 22.6],
+  [80.3, 13.1],
+  [91.7, 26.1],
+  [75.8, 26.9],
+  [78.5, 17.4],
+  [85.1, 25.6],
+  [74.9, 15.3],
+  [82.9, 21.2],
+  [76.6, 30.7],
+  [70.8, 22.3],
+  [79.1, 10.8],
+  [86.9, 23.8],
+  [73.2, 25.4],
+].map(([lon, lat]) => project(lon, lat));
 
 export function IndiaMap({
+  eyebrow,
   heading,
   body,
   caption,
+  hint,
   pins,
   reducedMotion,
 }: IndiaMapProps) {
   const rootRef = useRef<HTMLDivElement>(null);
-  const [activeId, setActiveId] = useState<string | null>(null);
+  const [activeId, setActiveId] = useState(pins[0]?.id ?? null);
   const projectedPins = useMemo(
     () =>
       pins.map((pin) => {
         const [x, y] = project(pin.lon, pin.lat);
-        return { ...pin, x, y, labelOnLeft: pin.lon < 80 };
+        return { ...pin, x, y };
       }),
     [pins],
   );
-
-  const thread = useMemo(() => {
-    if (projectedPins.length < 2) return null;
-    const a = projectedPins[0];
-    const b = projectedPins[1];
-    return { x1: a.x, y1: a.y, x2: b.x, y2: b.y };
-  }, [projectedPins]);
-
-  const active = projectedPins.find((pin) => pin.id === activeId) ?? null;
+  const active = projectedPins.find((pin) => pin.id === activeId) ?? projectedPins[0] ?? null;
 
   useLayoutEffect(() => {
-    if (reducedMotion) return;
     const root = rootRef.current;
     if (!root) return;
 
+    // Clear leftover transforms (deep-link / remount safety)
+    gsap.set(root.querySelectorAll(".map-pin, .map-soft"), {
+      clearProps: "transform,opacity,scale",
+    });
+
+    if (reducedMotion) {
+      ScrollTrigger.refresh();
+      return;
+    }
+
     const ctx = gsap.context(() => {
-      gsap.from(".map-pin", {
-        scale: 0,
-        transformOrigin: "center",
-        stagger: 0.15,
-        duration: 0.6,
-        ease: "back.out(1.6)",
-        scrollTrigger: {
-          trigger: root,
-          start: "top 70%",
-        },
-      });
+      // Scale the whole pin group (local origin is pin center via SVG translate)
       gsap.fromTo(
-        ".map-city-thread",
-        { strokeDashoffset: 180 },
+        ".map-pin",
+        { scale: 0, opacity: 0, transformOrigin: "0px 0px" },
         {
-          strokeDashoffset: 0,
-          duration: 1.1,
+          scale: 1,
+          opacity: 1,
+          immediateRender: false,
+          stagger: 0.12,
+          duration: 0.5,
+          ease: "back.out(1.5)",
+          scrollTrigger: {
+            trigger: root,
+            start: "top 75%",
+            once: true,
+          },
+        },
+      );
+      gsap.fromTo(
+        ".map-soft",
+        { opacity: 0 },
+        {
+          opacity: 0.35,
+          immediateRender: false,
+          stagger: 0.02,
+          duration: 0.35,
           ease: "power2.out",
           scrollTrigger: {
             trigger: root,
-            start: "top 65%",
+            start: "top 75%",
+            once: true,
           },
         },
       );
     }, root);
 
-    return () => ctx.revert();
+    const refreshTimer = window.setTimeout(() => ScrollTrigger.refresh(), 120);
+
+    return () => {
+      window.clearTimeout(refreshTimer);
+      ctx.revert();
+    };
   }, [reducedMotion]);
 
   return (
-    <div ref={rootRef} id="map" className="scroll-mt-28">
-      <h2 className="font-serif text-3xl text-ink sm:text-4xl">{heading}</h2>
-      <p className="mt-4 max-w-2xl text-lg leading-relaxed text-ink/75">{body}</p>
-      <div className="mt-8 overflow-hidden rounded-3xl border border-teal/15 bg-mist/40 px-4 py-8 sm:px-10">
-        <svg
-          viewBox="-8 -6 276 262"
-          className="mx-auto h-auto w-full max-w-xl"
-          role="img"
-          aria-label="Map of India with pins at Pune and Bhubaneswar"
-        >
-          <defs>
-            <clipPath id="india-land">
-              <path d={OUTLINE_PATH} />
-            </clipPath>
-          </defs>
-          {WORLD_DOTS.map(([x, y, opacity], i) => (
-            <circle
-              key={`w-${x}-${y}-${i}`}
-              cx={x}
-              cy={y}
-              r="1.05"
-              fill="#1E5F5C"
-              opacity={opacity}
-            />
-          ))}
-          <path d={OUTLINE_PATH} fill="#1E5F5C" fillOpacity="0.1" />
-          <g clipPath="url(#india-land)">
-            {INDIA_DOTS.map(([x, y, opacity], i) => (
+    <div ref={rootRef} id="map" className="scroll-mt-28 text-cream">
+      {eyebrow ? (
+        <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-clay">
+          {eyebrow}
+        </p>
+      ) : null}
+      <h2 className="mt-3 font-serif text-3xl sm:text-4xl">{heading}</h2>
+      <p className="mt-4 max-w-2xl text-lg leading-relaxed text-cream/75">{body}</p>
+
+      <div className="mt-10 grid gap-8 lg:grid-cols-[1.15fr_0.85fr] lg:items-start lg:gap-10">
+        <div className="rounded-[2rem] border border-cream/10 bg-teal/40 px-3 py-6 sm:px-6">
+          <svg
+            viewBox="-10 -8 250 242"
+            className="mx-auto h-auto w-full max-w-xl"
+            role="img"
+            aria-label="Map of India with pilot pins at Bhubaneswar and Pune"
+          >
+            <defs>
+              <clipPath id="india-land">
+                <path d={OUTLINE_PATH} />
+              </clipPath>
+            </defs>
+            <path d={OUTLINE_PATH} fill="#F7F2EA" fillOpacity="0.06" />
+            <g clipPath="url(#india-land)" pointerEvents="none">
+              {DOTS.map(([x, y], i) => (
+                <circle
+                  key={`${x}-${y}-${i}`}
+                  cx={x}
+                  cy={y}
+                  r="1.35"
+                  fill="#D5E4DF"
+                  opacity="0.55"
+                />
+              ))}
+            </g>
+            {SOFT_MARKS.map(([x, y], i) => (
               <circle
-                key={`i-${x}-${y}-${i}`}
-                className="map-dot"
+                key={`soft-${i}`}
+                className="map-soft"
                 cx={x}
                 cy={y}
-                r="1.35"
-                fill="#1E5F5C"
-                opacity={opacity}
+                r="1.6"
+                fill="#D5E4DF"
+                opacity="0.35"
+                pointerEvents="none"
               />
             ))}
-          </g>
-          {thread ? (
-            <line
-              className="map-city-thread"
-              x1={thread.x1}
-              y1={thread.y1}
-              x2={thread.x2}
-              y2={thread.y2}
-              stroke="#C9683F"
-              strokeWidth="1.5"
-              strokeLinecap="round"
-              strokeDasharray="180"
-              strokeDashoffset={reducedMotion ? 0 : 180}
-              opacity="0.85"
-            />
-          ) : null}
-          {projectedPins.map((pin) => (
-            <g
-              key={pin.id}
-              className="map-pin cursor-pointer"
-              role="button"
-              tabIndex={0}
-              onClick={() => setActiveId(pin.id === activeId ? null : pin.id)}
-              onKeyDown={(event) => {
-                if (event.key === "Enter" || event.key === " ") {
-                  event.preventDefault();
-                  setActiveId(pin.id === activeId ? null : pin.id);
-                }
-              }}
-            >
-              <circle
-                className="pin-halo"
-                cx={pin.x}
-                cy={pin.y}
-                r="11"
-                fill="#C9683F"
-                opacity="0"
-              />
-              <circle className="pin-core" cx={pin.x} cy={pin.y} r="3.8" fill="#C9683F" />
-              <circle
-                className="pin-ring"
-                cx={pin.x}
-                cy={pin.y}
-                r="6.4"
-                fill="none"
-                stroke="#C9683F"
-                strokeWidth="0.85"
-                opacity="0.75"
-              />
-              <text
-                className="pin-label"
-                x={pin.labelOnLeft ? pin.x - 9 : pin.x + 9}
-                y={pin.y + 1.6}
-                textAnchor={pin.labelOnLeft ? "end" : "start"}
-                fontSize="9"
-                fill="#1F2A2E"
-                fontFamily="Source Sans 3, sans-serif"
-              >
-                {pin.label}
-              </text>
-            </g>
-          ))}
-        </svg>
-        {active ? (
-          <div className="mx-auto mt-6 max-w-sm rounded-2xl border border-ink/8 bg-cream p-5 text-center shadow-sm">
-            <p className="text-xs font-semibold uppercase tracking-[0.16em] text-teal">
-              {active.status ?? "Pilot starting"}
-            </p>
-            <h3 className="mt-2 font-serif text-2xl text-ink">{active.label}</h3>
-            {active.lead ? (
-              <p className="mt-2 text-sm text-ink/70">Led by {active.lead}</p>
-            ) : null}
+            {projectedPins.map((pin) => {
+              const selected = pin.id === active?.id;
+              return (
+                // Outer translate is sacred — GSAP must never touch it
+                <g key={pin.id} transform={`translate(${pin.x} ${pin.y})`}>
+                  <g
+                    className="map-pin cursor-pointer"
+                    role="button"
+                    tabIndex={0}
+                    aria-label={`${pin.label}${pin.status ? `, ${pin.status}` : ""}`}
+                    aria-pressed={selected}
+                    onClick={() => setActiveId(pin.id)}
+                    onKeyDown={(event) => {
+                      if (event.key === "Enter" || event.key === " ") {
+                        event.preventDefault();
+                        setActiveId(pin.id);
+                      }
+                    }}
+                  >
+                    {/* Circles at local 0,0 so CSS/GSAP scale stays concentric */}
+                    <circle r="16" fill="transparent" />
+                    <circle
+                      className="pin-halo"
+                      r="11"
+                      fill="#C9683F"
+                      opacity={selected ? 0.3 : 0.12}
+                      pointerEvents="none"
+                    />
+                    {!selected ? (
+                      <circle
+                        className="pin-pulse"
+                        r="7"
+                        fill="none"
+                        stroke="#C9683F"
+                        strokeWidth="1.2"
+                        pointerEvents="none"
+                      />
+                    ) : null}
+                    <circle
+                      className="pin-ring"
+                      r={selected ? 8.5 : 7}
+                      fill="none"
+                      stroke={selected ? "#F7F2EA" : "#C9683F"}
+                      strokeWidth={selected ? 1.8 : 1.25}
+                      pointerEvents="none"
+                    />
+                    <circle
+                      className="pin-core"
+                      r="4.5"
+                      fill="#C9683F"
+                      pointerEvents="none"
+                    />
+                  </g>
+                </g>
+              );
+            })}
+          </svg>
+          <p className="mt-4 px-2 text-sm text-cream/55">{caption}</p>
+        </div>
+
+        <div>
+          <div className="space-y-3">
+            {projectedPins.map((pin) => {
+              const selected = pin.id === active?.id;
+              return (
+                <button
+                  key={pin.id}
+                  type="button"
+                  onClick={() => setActiveId(pin.id)}
+                  className={`w-full rounded-3xl border px-5 py-4 text-left transition-[border-color,background-color,box-shadow] duration-300 ${
+                    selected
+                      ? "border-clay bg-cream/10 shadow-[0_0_0_1px_rgba(201,104,63,0.35)]"
+                      : "border-cream/15 bg-cream/5 hover:border-cream/30"
+                  }`}
+                >
+                  <div className="flex items-start gap-3">
+                    <span className="mt-1 inline-block h-3 w-3 rounded-full bg-clay" />
+                    <div>
+                      <h3 className="font-serif text-2xl text-cream">{pin.label}</h3>
+                      <p className="mt-1 text-sm text-cream/70">
+                        Run by {pin.lead}
+                        {pin.role ? `, ${pin.role}` : ""}
+                      </p>
+                      <span
+                        className={`mt-3 inline-flex rounded-full px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.14em] ${
+                          selected ? "bg-clay text-cream" : "bg-cream/10 text-cream/70"
+                        }`}
+                      >
+                        {pin.status ?? "Pilot starting soon"}
+                      </span>
+                    </div>
+                  </div>
+                </button>
+              );
+            })}
           </div>
-        ) : (
-          <p className="mt-5 text-center text-sm text-ink/55">Tap a pin to see who runs that city.</p>
-        )}
+          {hint ? <p className="mt-4 text-sm text-cream/55">{hint}</p> : null}
+        </div>
       </div>
-      <p className="mt-4 text-sm text-ink/55">{caption}</p>
     </div>
   );
 }
